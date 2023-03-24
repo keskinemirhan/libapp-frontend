@@ -6,6 +6,10 @@ export class UpdateBookDto {
   ) {}
 }
 
+export class CreateBookDto {
+  constructor(public name: string, public categories: []) {}
+}
+
 export class UpdateCategoryDto {
   constructor(
     public id: number,
