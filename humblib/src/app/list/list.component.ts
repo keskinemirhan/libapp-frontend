@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LibraryService } from '../library.service';
 
 @Component({
   selector: 'app-list',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
-  books = [];
+  constructor(public libraryService: LibraryService) {}
 }

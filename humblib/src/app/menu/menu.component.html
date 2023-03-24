@@ -4,7 +4,11 @@
       Welcome to your library!
     </div>
     <div class="flex flex-row text-center mx-2 flex-wrap">
-      <a routerLink="/list" class="flex-1 transition mx-6 my-6">
+      <a
+        (click)="clickList()"
+        routerLink="/list"
+        class="flex-1 transition mx-6 my-6"
+      >
         <div class="card-list border-emerald-500 items-center border rounded">
           <div class="subtext text-3xl px-24 my-24 bg-transparent text-cyan-50">
             List

@@ -6,8 +6,9 @@ import { BASE_URL, BOOK_URL } from './var';
 @Injectable()
 export class LibraryService {
   constructor(private http: HttpClient, private loggerService: LoggerService) {}
+  books: Array<any> = [];
 
-  getBooks(id: number) {
+  getBooks() {
     return this.http
       .get(BOOK_URL, {
         headers: {
@@ -16,7 +17,7 @@ export class LibraryService {
         },
       })
       .subscribe((data: any) => {
-        return data;
+        this.books = data;
       });
   }
 

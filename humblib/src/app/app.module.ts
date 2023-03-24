@@ -12,6 +12,7 @@ import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LoggerService } from './logger.service';
+import { LibraryService } from './library.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { LoggerService } from './logger.service';
     LoginComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule],
-  providers: [LoggerService],
+  providers: [LoggerService, LibraryService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
