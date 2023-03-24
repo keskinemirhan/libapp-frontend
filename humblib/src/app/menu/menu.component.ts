@@ -15,7 +15,6 @@ export class MenuComponent {
     private router: Router
   ) {}
   clickList() {
-    if (this.loggerService.isLogged) this.libraryService.getBooks();
-    else this.router.navigate(['/']);
+    if (!this.loggerService.isLogged) this.router.navigate(['/login']);
   }
 }
