@@ -3,5 +3,6 @@
     <div *ngFor="let book of this.libraryService.books">
       {{ book.name }} == {{ book.categories[0].name }}
     </div>
+    <a routerLink="/addbook"> Add Book </a>
   </div>
 </div>

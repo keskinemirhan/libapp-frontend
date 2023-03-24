@@ -1,13 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoggerService } from './logger.service';
-import { BASE_URL, BOOK_URL } from './var';
+import { BASE_URL, BOOK_URL, CAT_URL } from './var';
 
 @Injectable()
 export class LibraryService {
   constructor(private http: HttpClient, private loggerService: LoggerService) {}
   books: Array<any> = [];
+  categories: Array<any> = [];
 
+  //=================== BOOKS ==================
   getBooks() {
     return this.http
       .get(BOOK_URL, {
@@ -40,5 +42,18 @@ export class LibraryService {
           categories,
         })
       );
+  }
+
+  //=================== CATEGORIES ==================
+
+  getCategories() {
+    return this.http
+      .get(CAT_URL, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.loggerService.token}`,
+        },
+      })
+      .subscribe((data: any) => (this.categories = data));
   }
 }

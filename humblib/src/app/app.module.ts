@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LoggerService } from './logger.service';
 import { LibraryService } from './library.service';
+import { AdbookComponent } from './adbook/adbook.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LibraryService } from './library.service';
     FooterComponent,
     ListComponent,
     LoginComponent,
+    AdbookComponent,
   ],
   imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule],
   providers: [LoggerService, LibraryService],

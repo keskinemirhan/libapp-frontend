@@ -1,0 +1,10 @@
+<form>
+  <label for="name">Book Name</label>
+  <input type="text" name="name" id="name" />
+  <label for="categories">Categories</label>
+  <select name="" id="">
+    <option *ngFor="let category of this.libraryService.categories" value="">
+      {{ category.name }}
+    </option>
+  </select>
+</form>
