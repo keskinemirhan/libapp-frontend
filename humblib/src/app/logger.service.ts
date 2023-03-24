@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BASE_URL } from './var';
+import { LOG_URL, PROF_URL } from './var';
 @Injectable()
 export class LoggerService {
   constructor(private http: HttpClient) {}
@@ -10,14 +10,14 @@ export class LoggerService {
   feedBack = '';
 
   login(email: string, password: string) {
-    return this.http.post(BASE_URL + '/users/login', {
+    return this.http.post(LOG_URL, {
       email,
       password,
     });
   }
 
   getProfile(token: string) {
-    return this.http.get(BASE_URL + '/users/profile', {
+    return this.http.get(PROF_URL, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
