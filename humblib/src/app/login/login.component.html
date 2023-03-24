@@ -1,1 +1,34 @@
-<p>login works!</p>
+<div class="container mx-auto text-emerald-900">
+  <div class="flex justify-center mb-48">
+    <form
+      (ngSubmit)="onSubmit()"
+      class="shadow-2xl p-12 flex flex-col"
+      action=""
+    >
+      <label class="my-1" for="email">Email</label>
+      <input
+        class="my-1 p-2 bg-emerald-100 rounded border"
+        required
+        type="email"
+        name="email"
+        id="email"
+        [(ngModel)]="model.email"
+      />
+      <label class="my-1" for="password">Password</label>
+      <input
+        [(ngModel)]="model.password"
+        class="my-1 p-2 bg-emerald-100 rounded border"
+        required
+        type="password"
+        name="password"
+        id="password"
+      />
+      <button
+        class="hover:bg-emerald-700 transition-all mt-6 active:shadow-2xl rounded p-1 mx-auto bg-emerald-900 text-cyan-50"
+        type="submit "
+      >
+        Login
+      </button>
+    </form>
+  </div>
+</div>
