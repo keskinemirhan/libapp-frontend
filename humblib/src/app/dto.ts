@@ -7,7 +7,7 @@ export class UpdateBookDto {
 }
 
 export class CreateBookDto {
-  constructor(public name: string, public categories: []) {}
+  constructor(public name?: string, public categories?: Array<any>) {}
 }
 
 export class UpdateCategoryDto {
