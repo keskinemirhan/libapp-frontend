@@ -5,6 +5,9 @@
       class="shadow-2xl p-12 flex flex-col"
       action=""
     >
+      <div *ngIf="this.loggerService.feedBack">
+        {{ this.loggerService.feedBack }}
+      </div>
       <label class="my-1" for="email">Email</label>
       <input
         class="my-1 p-2 bg-emerald-100 rounded border"
