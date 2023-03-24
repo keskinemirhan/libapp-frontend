@@ -1,5 +1,7 @@
 <div class="container mx-auto">
   <div class="flex flex-col">
-    <div *ngFor="let book of this.libraryService.books">{{ book.name }}</div>
+    <div *ngFor="let book of this.libraryService.books">
+      {{ book.name }} == {{ book.categories[0].name }}
+    </div>
   </div>
 </div>
