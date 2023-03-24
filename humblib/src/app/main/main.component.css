@@ -1,0 +1,6 @@
+.main:has(.menu) {
+  justify-content: center;
+}
+.main:has(.login) {
+  justify-content: center;
+}
