@@ -25,7 +25,24 @@ export class LibraryService {
 
   //   getBook() {}
 
-  //   patchBook() {}
+  patchBook(bookId: number, bookName: string, categories: string[]) {
+    return this.http
+      .patch(
+        BOOK_URL,
+        {
+          bookId,
+          bookName,
+          categories,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.loggerService.token}`,
+          },
+        }
+      )
+      .subscribe();
+  }
 
   deleteBook(id: number) {
     return this.http

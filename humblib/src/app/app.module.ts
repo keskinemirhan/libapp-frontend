@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoggerService } from './logger.service';
 import { LibraryService } from './library.service';
 import { AdbookComponent } from './adbook/adbook.component';
+import { UpdateBookComponent } from './update-book/update-book.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AdbookComponent } from './adbook/adbook.component';
     ListComponent,
     LoginComponent,
     AdbookComponent,
+    UpdateBookComponent,
   ],
   imports: [
     HttpClientModule,

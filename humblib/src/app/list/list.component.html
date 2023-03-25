@@ -3,7 +3,7 @@
     <div *ngFor="let book of this.libraryService.books">
       <div>{{ book.name }} == {{ book.categories[0].name }}</div>
       <button (click)="onDelete(book.id)">Delete</button>
-      <button [value]="book.id">Update</button>
+      <a [routerLink]="['/updatebook', book.id]">Update</a>
       <hr />
     </div>
     <a routerLink="/addbook"> Add Book </a>
