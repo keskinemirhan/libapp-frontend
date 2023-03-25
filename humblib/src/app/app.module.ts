@@ -15,6 +15,7 @@ import { LoggerService } from './logger.service';
 import { LibraryService } from './library.service';
 import { AdbookComponent } from './adbook/adbook.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
+import { CategorizationComponent } from './categorization/categorization.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UpdateBookComponent } from './update-book/update-book.component';
     LoginComponent,
     AdbookComponent,
     UpdateBookComponent,
+    CategorizationComponent,
   ],
   imports: [
     HttpClientModule,
