@@ -27,21 +27,50 @@ export class LibraryService {
 
   //   patchBook() {}
 
-  //   deleteBook() {}
+  deleteBook(id: number) {
+    return this.http
+      .delete(BOOK_URL + `/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.loggerService.token}`,
+        },
+      })
+      .subscribe();
+  }
 
   createBook(name: string, categories: Array<string>) {
     return this.http
-      .post(BOOK_URL, {
-        name,
-        categories: [],
-      })
-      .subscribe((data: any) =>
-        this.http.patch(BOOK_URL, {
-          bookId: data.id,
-          bookName: name,
-          categories,
-        })
-      );
+      .post(
+        BOOK_URL,
+        {
+          name,
+          categories: [],
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.loggerService.token}`,
+          },
+        }
+      )
+      .subscribe((data: any) => {
+        this.http
+          .patch(
+            BOOK_URL,
+            {
+              bookId: data.id,
+              bookName: name,
+              categories: categories,
+            },
+            {
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.loggerService.token}`,
+              },
+            }
+          )
+          .subscribe();
+      });
   }
 
   //=================== CATEGORIES ==================

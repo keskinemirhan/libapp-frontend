@@ -10,7 +10,7 @@ import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoggerService } from './logger.service';
 import { LibraryService } from './library.service';
 import { AdbookComponent } from './adbook/adbook.component';
@@ -27,7 +27,13 @@ import { AdbookComponent } from './adbook/adbook.component';
     LoginComponent,
     AdbookComponent,
   ],
-  imports: [HttpClientModule, BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+  ],
   providers: [LoggerService, LibraryService],
   bootstrap: [AppComponent],
 })
