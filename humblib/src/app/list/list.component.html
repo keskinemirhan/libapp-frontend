@@ -1,11 +1,30 @@
 <div class="container mx-auto">
-  <div class="flex flex-col">
-    <div *ngFor="let book of this.libraryService.books">
-      <div>{{ book.name }} == {{ book.categories[0].name }}</div>
-      <button (click)="onDelete(book.id)">Delete</button>
-      <a [routerLink]="['/updatebook', book.id]">Update</a>
-      <hr />
+  <div class="flex mx-auto flex-col max-w-2xl items-stretch justify-center">
+    <div
+      class="hover:bg-emerald-900 transition flex items-center bg-emerald-800 text-cyan-50 m-2 rounded-lg"
+      *ngFor="let book of this.libraryService.books"
+    >
+      <div class="m-2 flex-1">{{ book.name }}</div>
+      <div class="m-2 flex-1">
+        <div *ngFor="let bookCat of book.categories">{{ bookCat.name }}</div>
+      </div>
+      <button
+        class="hover:bg-red-50 flex-none transition p-2 m-2 rounded-md text-red-900 bg-red-300"
+        (click)="onDelete(book.id)"
+      >
+        Delete
+      </button>
+      <a
+        class="hover:bg-emerald-100 flex-none transition bg-emerald-400 p-2 m-2 rounded-md text-green-900"
+        [routerLink]="['/updatebook', book.id]"
+        >Update</a
+      >
     </div>
-    <a routerLink="/addbook"> Add Book </a>
+    <a
+      class="m-2 transition self-center hover:bg-emerald-600 p-2 bg-emerald-900 text-cyan-50 rounded-md"
+      routerLink="/addbook"
+    >
+      Add Book
+    </a>
   </div>
 </div>
