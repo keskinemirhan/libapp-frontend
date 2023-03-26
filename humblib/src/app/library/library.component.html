@@ -5,14 +5,14 @@
     </div>
     <div class="flex-wrap justify-center m-5 flex">
       <div *ngFor="let book of this.libraryService.books">
-        <a *ngIf="isCat(book, cat)" href="" class="book transition">
+        <a class="transition" *ngIf="isCat(book, cat)">
           <div
-            class="w-48 p-2 h-64 bg-slate-200 shadow-2xl rounded-sm flex justify-center items-center"
+            class="book w-48 m-2 transition p-2 h-64 bg-slate-200 shadow-2xl rounded-sm flex justify-center items-center"
           >
             <div
-              class="flex justify-center w-full h-full border border-slate-900"
+              class="flex justify-center w-full h-full border py-12 border-slate-900"
             >
-              <p class="mt-12 text-base">{{ book.name }}</p>
+              <p class="inline-block text-base">{{ book.name }}</p>
             </div>
           </div>
         </a>
