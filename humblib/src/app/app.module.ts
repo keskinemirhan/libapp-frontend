@@ -18,6 +18,8 @@ import { UpdateBookComponent } from './update-book/update-book.component';
 import { CategorizationComponent } from './categorization/categorization.component';
 import { RegisterComponent } from './register/register.component';
 import { LibraryComponent } from './library/library.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -41,8 +43,9 @@ import { LibraryComponent } from './library/library.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
-  providers: [LoggerService, LibraryService],
+  providers: [LoggerService, LibraryService, MatCheckboxModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
