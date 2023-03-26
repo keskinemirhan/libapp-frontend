@@ -103,6 +103,17 @@ export class LibraryService {
       .subscribe((data: any) => (this.categories = data));
   }
 
+  deleteCategory(id: number) {
+    this.http
+      .delete(CAT_URL + `/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.loggerService.token}`,
+        },
+      })
+      .subscribe();
+  }
+
   createCategory(name: string, topCategory: string) {
     this.http
       .post(
