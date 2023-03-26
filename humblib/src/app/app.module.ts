@@ -17,6 +17,7 @@ import { AdbookComponent } from './adbook/adbook.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { CategorizationComponent } from './categorization/categorization.component';
 import { RegisterComponent } from './register/register.component';
+import { LibraryComponent } from './library/library.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { RegisterComponent } from './register/register.component';
     UpdateBookComponent,
     CategorizationComponent,
     RegisterComponent,
+    LibraryComponent,
   ],
   imports: [
     HttpClientModule,
