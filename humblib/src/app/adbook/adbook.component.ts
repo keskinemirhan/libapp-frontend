@@ -44,8 +44,10 @@ export class AdbookComponent implements OnInit {
       this.form.value.name,
       this.form.value.categories
     );
-    this.router
-      .navigateByUrl('/', { skipLocationChange: true })
-      .then(() => this.router.navigateByUrl('/list'));
+    setTimeout(() => {
+      this.router
+        .navigateByUrl('/', { skipLocationChange: true })
+        .then(() => this.router.navigateByUrl('/list'));
+    }, 100);
   }
 }
