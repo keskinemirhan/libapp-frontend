@@ -5,6 +5,10 @@
     <title>Humblib</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link
       rel="stylesheet"
@@ -13,7 +17,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-  </head>
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
   <body
     style="
       min-height: 100vh;
@@ -21,7 +28,7 @@
       flex-direction: column;
       justify-content: stretch;
     "
-  >
+   class="mat-typography">
     <app-root></app-root>
   </body>
 </html>
