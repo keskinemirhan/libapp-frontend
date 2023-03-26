@@ -4,3 +4,7 @@
 .main:has(.login) {
   justify-content: center;
 }
+
+.main:has(.register) {
+  justify-content: center;
+}
