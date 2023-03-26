@@ -104,18 +104,20 @@ export class LibraryService {
   }
 
   createCategory(name: string, topCategory: string) {
-    this.http.post(
-      CAT_URL,
-      {
-        name,
-        topCategory,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.loggerService.token}`,
+    this.http
+      .post(
+        CAT_URL,
+        {
+          name,
+          topCategory,
         },
-      }
-    );
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.loggerService.token}`,
+          },
+        }
+      )
+      .subscribe();
   }
 }
