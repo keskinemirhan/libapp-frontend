@@ -1,27 +1,49 @@
-<form (submit)="onSubmit()" [formGroup]="form">
-  <label for="email">Email</label>
-  <input
-    required=""
-    formControlName="email"
-    type="email"
-    name="email"
-    id="email"
-  />
-  <label for="username">Username</label>
-  <input
-    required=""
-    formControlName="username"
-    type="text"
-    name="username"
-    id="username"
-  />
-  <label for="password">Password</label>
-  <input
-    required
-    formControlName="password"
-    type="password"
-    name="password "
-    id="password"
-  />
-  <button type="submit">Register</button>
-</form>
+<div class="register container mx-auto">
+  <div class="flex mb-48 flex-col items-center justify-center">
+    <form
+      class="flex shadow-xl p-12 flex-col items-center"
+      (submit)="onSubmit()"
+      [formGroup]="form"
+    >
+      <label class="self-start text-emerald-900 text-md" for="email"
+        >Email</label
+      >
+      <input
+        class="bg-emerald-100 p-2 my-1 rounded border"
+        required=""
+        formControlName="email"
+        type="email"
+        name="email"
+        id="email"
+      />
+      <label class="self-start text-emerald-900 text-md" for="username"
+        >Username</label
+      >
+      <input
+        class="bg-emerald-100 p-2 my-1 rounded border"
+        required=""
+        formControlName="username"
+        type="text"
+        name="username"
+        id="username"
+      />
+      <label class="self-start text-emerald-900 text-md" for="password"
+        >Password</label
+      >
+      <input
+        class="bg-emerald-100 p-2 my-1 rounded border"
+        required
+        formControlName="password"
+        type="password"
+        name="password "
+        id="password"
+      />
+      <button
+        class="bg-emerald-900 text-cyan-50 p-2 m-2 rounded hover:bg-emerald-600 transition"
+        type="submit"
+      >
+        Register
+      </button>
+    </form>
+  </div>
+</div>
