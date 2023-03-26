@@ -1,16 +1,37 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <label for="name">Book Name</label>
-  <input type="text" formControlName="name" name="name" id="name" />
-  <div *ngFor="let cat of this.libraryService.categories">
-    <label
-      ><input
-        type="checkbox"
-        [value]="cat.name"
-        (change)="onCheckboxChange($event)"
-        id=""
+<div class="container mx-auto">
+  <div class="mt-5 flex justify-center">
+    <form
+      class="p-5 shadow-lg flex max-w-md items-center justify-center flex-col"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <label class="bg-emerald-900 p-2 rounded-full text-cyan-50 m-2" for="name"
+        >Book Name</label
+      >
+      <input
+        class="p-2 bg-emerald-100 text-emerald-900"
+        type="text"
+        formControlName="name"
+        name="name"
+        id="name"
       />
-      {{ cat.name }}
-    </label>
+      <div *ngFor="let cat of this.libraryService.categories">
+        <label
+          ><input
+            class="m-2"
+            type="checkbox"
+            [value]="cat.name"
+            (change)="onCheckboxChange($event)"
+            id=""
+          />
+          {{ cat.name }}
+        </label>
+      </div>
+      <input
+        class="bg-emerald-900 p-2 m-2 rounded-md text-cyan-50 hover:bg-emerald-700 transition hover:cursor-pointer"
+        type="submit"
+        value="Submit"
+      />
+    </form>
   </div>
-  <input type="submit" value="Submit" />
-</form>
+</div>
