@@ -61,6 +61,8 @@ export class UpdateBookComponent implements OnInit {
       this.form.value.name,
       this.form.value.categories
     );
-    this.router.navigate(['/list']);
+    this.router
+      .navigateByUrl('/', { skipLocationChange: true })
+      .then(() => this.router.navigateByUrl('/list'));
   }
 }
