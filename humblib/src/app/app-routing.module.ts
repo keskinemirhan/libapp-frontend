@@ -6,6 +6,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AdbookComponent } from './adbook/adbook.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { CategorizationComponent } from './categorization/categorization.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'addbook', component: AdbookComponent },
   { path: 'updatebook/:id', component: UpdateBookComponent },
   { path: 'categorization', component: CategorizationComponent },
+  { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({

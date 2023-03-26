@@ -16,6 +16,7 @@ import { LibraryService } from './library.service';
 import { AdbookComponent } from './adbook/adbook.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { CategorizationComponent } from './categorization/categorization.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CategorizationComponent } from './categorization/categorization.compone
     AdbookComponent,
     UpdateBookComponent,
     CategorizationComponent,
+    RegisterComponent,
   ],
   imports: [
     HttpClientModule,

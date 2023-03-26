@@ -1,0 +1,27 @@
+<form (submit)="onSubmit()" [formGroup]="form">
+  <label for="email">Email</label>
+  <input
+    required=""
+    formControlName="email"
+    type="email"
+    name="email"
+    id="email"
+  />
+  <label for="username">Username</label>
+  <input
+    required=""
+    formControlName="username"
+    type="text"
+    name="username"
+    id="username"
+  />
+  <label for="password">Password</label>
+  <input
+    required
+    formControlName="password"
+    type="password"
+    name="password "
+    id="password"
+  />
+  <button type="submit">Register</button>
+</form>
