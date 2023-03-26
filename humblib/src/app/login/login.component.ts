@@ -28,6 +28,7 @@ export class LoginComponent {
           .getProfile(this.loggerService.token)
           .subscribe((data: any) => {
             this.loggerService.profileName = data.username;
+            localStorage.setItem('humblibToken', this.loggerService.token);
             return this.router.navigate(['/']);
           });
       });
