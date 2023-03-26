@@ -1,1 +1,9 @@
-<p>categorization works!</p>
+<div *ngFor="let cat of this.libraryService.categories">
+  {{ cat.name }}
+</div>
+<div>New Category</div>
+<form (submit)="onSubmit()" [formGroup]="form">
+  <label for=""></label>
+  <input formControlName="name" type="text" name="" id="" />
+  <button type="submit">Add New Category</button>
+</form>
