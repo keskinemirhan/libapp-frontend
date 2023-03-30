@@ -11,22 +11,21 @@ export class LoggerService {
   feedBack = '';
 
   constructor(private http: HttpClient, private router: Router) {
-    if (localStorage.getItem('humblibToken')) {
-      this.getProfile(this.token)
-        .pipe(
-          catchError((err) => {
-            throw err;
-          })
-        )
-        .subscribe({
-          error: (err) => this.router.navigate(['/login']),
-          next: (data: any) => {
-            this.profileName = data.username;
-          },
-        });
-      this.isLogged = true;
-      this.token = localStorage.getItem('token') as string;
-    }
+    this.token = localStorage.getItem('humblibToken') as string;
+
+    this.getProfile(this.token)
+      .pipe(
+        catchError((err) => {
+          throw err;
+        })
+      )
+      .subscribe({
+        error: (err) => this.router.navigate(['/login']),
+        next: (data: any) => {
+          this.profileName = data.username;
+        },
+      });
+    this.isLogged = true;
   }
 
   login(email: string, password: string) {
