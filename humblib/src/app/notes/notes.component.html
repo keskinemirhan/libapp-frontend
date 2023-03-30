@@ -1,0 +1,20 @@
+<div class="container mx-auto">
+  <div class="flex justify-center text-emerald-900 items-center flex-col">
+    <div
+      *ngFor="let note of notes"
+      class="bg-emerald-200 w-1/3 rounded p-4 my-2"
+    >
+      <div
+        class="bg-emerald-900 text-cyan-50 text-center p-1 rounded mb-2 text-ms"
+      >
+        {{ note.book.name }}
+      </div>
+      <div class="text-xl">{{ note.title }}</div>
+
+      <div class="text-sm max-h-48 overflow-hidden">{{ note.note }}</div>
+      <div class="my-2 p-2 text-xs border-t-emerald-900 border-t">
+        {{ note.updated | date }}
+      </div>
+    </div>
+  </div>
+</div>

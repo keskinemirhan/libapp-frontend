@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoggerService } from './logger.service';
-import { BOOK_URL, CAT_URL } from './var';
+import { BOOK_URL, CAT_URL, NOTES_URL } from './var';
 
 @Injectable()
 export class LibraryService {
@@ -131,5 +131,18 @@ export class LibraryService {
       )
       .subscribe();
   }
+  //======================================================
+
+  //======================= NOTES ========================
+
+  getAllNotes() {
+    return this.http.get(NOTES_URL, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.loggerService.token}`,
+      },
+    });
+  }
+
   //======================================================
 }

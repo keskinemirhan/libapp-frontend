@@ -20,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { LibraryComponent } from './library/library.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NotesComponent } from './notes/notes.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     CategorizationComponent,
     RegisterComponent,
     LibraryComponent,
+    NotesComponent,
   ],
   imports: [
     HttpClientModule,
