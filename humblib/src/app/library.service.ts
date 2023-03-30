@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoggerService } from './logger.service';
-import { BASE_URL, BOOK_URL, CAT_URL } from './var';
+import { BOOK_URL, CAT_URL } from './var';
 
 @Injectable()
 export class LibraryService {
@@ -131,4 +131,5 @@ export class LibraryService {
       )
       .subscribe();
   }
+  //======================================================
 }

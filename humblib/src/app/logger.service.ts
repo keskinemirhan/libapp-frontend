@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, of } from 'rxjs';
 import { LOG_URL, PROF_URL, USER_URL } from './var';
 @Injectable()
 export class LoggerService {
@@ -11,11 +12,20 @@ export class LoggerService {
 
   constructor(private http: HttpClient, private router: Router) {
     if (localStorage.getItem('humblibToken')) {
+      this.getProfile(this.token)
+        .pipe(
+          catchError((err) => {
+            throw err;
+          })
+        )
+        .subscribe({
+          error: (err) => this.router.navigate(['/login']),
+          next: (data: any) => {
+            this.profileName = data.username;
+          },
+        });
       this.isLogged = true;
       this.token = localStorage.getItem('token') as string;
-      this.getProfile(this.token).subscribe((data: any) => {
-        this.profileName = data.username;
-      });
     }
   }
 
