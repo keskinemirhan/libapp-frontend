@@ -1,8 +1,11 @@
 <div class="container mx-auto">
   <div class="flex justify-center text-emerald-900 items-center flex-col">
+    <div class="text-xl my-2 bg-emerald-900 text-cyan-50 p-2 rounded">
+      Total Notes : {{ notes.length }}
+    </div>
     <div
       *ngFor="let note of notes"
-      class="bg-emerald-200 w-1/3 rounded p-4 my-2"
+      class="bg-emerald-200 w-1/2 rounded p-4 my-2"
     >
       <div
         class="bg-emerald-900 text-cyan-50 text-center p-1 rounded mb-2 text-ms"
