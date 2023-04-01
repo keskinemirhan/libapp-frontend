@@ -9,6 +9,7 @@ import { CategorizationComponent } from './categorization/categorization.compone
 import { RegisterComponent } from './register/register.component';
 import { LibraryComponent } from './library/library.component';
 import { NotesComponent } from './notes/notes.component';
+import { AddnoteComponent } from './addnote/addnote.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'library', component: LibraryComponent },
   { path: 'notes', component: NotesComponent },
+  { path: 'addnote', component: AddnoteComponent },
 ];
 
 @NgModule({

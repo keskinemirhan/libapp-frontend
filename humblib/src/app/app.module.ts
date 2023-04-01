@@ -11,7 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoggerService } from './logger.service';
+import { LoggerService } from './core/auth/logger.service';
 import { LibraryService } from './library.service';
 import { AdbookComponent } from './adbook/adbook.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
@@ -21,6 +21,8 @@ import { LibraryComponent } from './library/library.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NotesComponent } from './notes/notes.component';
+import { AddnoteComponent } from './addnote/addnote.component';
+import { BooknotesComponent } from './booknotes/booknotes.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { NotesComponent } from './notes/notes.component';
     RegisterComponent,
     LibraryComponent,
     NotesComponent,
+    AddnoteComponent,
+    BooknotesComponent,
   ],
   imports: [
     HttpClientModule,
