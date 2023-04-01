@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ChildrenOutletContexts, Router } from '@angular/router';
 import { LibraryService } from '../library.service';
 
 @Component({
@@ -26,7 +26,10 @@ export class CategorizationComponent implements OnInit {
       .then(() => this.router.navigateByUrl('/categorization'));
   }
 
-  ngOnInit(): void {
-    this.libraryService.getCategories();
+  getChildren(id: number) {
+    this.libraryService.getCategory(id).unsubscribe();
+  }
+  ngOnInit() {
+    this.libraryService.getCategoriesNested;
   }
 }

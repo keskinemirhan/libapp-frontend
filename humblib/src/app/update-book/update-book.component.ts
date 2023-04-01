@@ -44,7 +44,7 @@ export class UpdateBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.libraryService.getCategories();
+    this.libraryService.getCategoriesArray();
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
     this.book = this.libraryService.books.find((val) => val.id === this.bookId);
     //@ts-ignore

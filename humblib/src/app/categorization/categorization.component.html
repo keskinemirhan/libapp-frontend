@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<!-- <div class="container mx-auto">
   <div class="flex flex-col items-center">
     <div
       class="bg-emerald-900 hover:bg-emerald-600 transition text-cyan-50 p-2 m-2 rounded-md"
@@ -29,5 +29,11 @@
         </button>
       </form>
     </div>
+  </div>
+</div> -->
+<div *ngIf="this.libraryService.categories_nested">
+  <div *ngFor="let cat of this.libraryService.categories_nested.children">
+    <div>{{ cat.name }}</div>
+    <button></button>
   </div>
 </div>
