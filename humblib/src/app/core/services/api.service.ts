@@ -6,6 +6,6 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   get(path: string) {
-    this.http.get(path);
+    return this.http.get(path);
   }
 }
