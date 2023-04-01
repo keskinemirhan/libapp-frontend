@@ -13,7 +13,7 @@ export class LibraryComponent implements OnInit {
     return book.categories.some((e: any) => e.name === cat.name);
   }
   ngOnInit(): void {
-    this.libraryService.getCategories();
+    this.libraryService.getCategoriesArray();
     this.libraryService.getBooks();
   }
 }
