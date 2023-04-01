@@ -37,7 +37,7 @@ export class AdbookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.libraryService.getCategories();
+    this.libraryService.getCategoriesArray();
   }
   onSubmit() {
     this.libraryService.createBook(
