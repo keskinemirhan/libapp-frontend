@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LibraryService } from '../library.service';
-import { LoggerService } from '../logger.service';
+import { LibraryService } from '../core';
+import { LoggerService } from '../core';
 
 @Component({
   selector: 'app-menu',
@@ -9,11 +9,7 @@ import { LoggerService } from '../logger.service';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
-  constructor(
-    private libraryService: LibraryService,
-    private loggerService: LoggerService,
-    private router: Router
-  ) {}
+  constructor(private loggerService: LoggerService, private router: Router) {}
   clickList() {
     if (!this.loggerService.isLogged) this.router.navigate(['/login']);
   }

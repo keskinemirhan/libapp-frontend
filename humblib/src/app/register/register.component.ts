@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoggerService } from '../logger.service';
+import { LoggerService } from '../core/services/logger.service';
 
 @Component({
   selector: 'app-register',

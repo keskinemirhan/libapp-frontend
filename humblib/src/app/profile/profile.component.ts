@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoggerService } from '../logger.service';
+import { LoggerService } from '../core/services/logger.service';
 
 @Component({
   selector: 'app-profile',

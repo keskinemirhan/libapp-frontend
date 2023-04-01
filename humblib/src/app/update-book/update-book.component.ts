@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import { LibraryService } from '../library.service';
+import { LibraryService } from '../core';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-update-book',

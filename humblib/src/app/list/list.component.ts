@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LibraryService } from '../library.service';
+import { LibraryService } from '../core';
 
 @Component({
   selector: 'app-list',

@@ -1,13 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { LoggerService } from './logger.service';
-import { BOOK_URL, CAT_URL, NOTES_URL } from './var';
+import { BOOK_URL, CAT_FLAT_URL, CAT_URL, NOTES_URL } from './var';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class LibraryService {
   constructor(private http: HttpClient, private loggerService: LoggerService) {}
   books: Array<any> = [];
+  categories_nested: any;
   categories: Array<any> = [];
+  subCategories = new BehaviorSubject(0);
 
   //=================== BOOKS ==================
   getBooks() {
@@ -92,9 +95,31 @@ export class LibraryService {
 
   //=================== CATEGORIES ==================
 
-  getCategories() {
+  getCategoriesNested() {
     return this.http
       .get(CAT_URL, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.loggerService.token}`,
+        },
+      })
+      .subscribe((data: any) => (this.categories_nested = data));
+  }
+
+  getCategory(id: number) {
+    return this.http
+      .get(CAT_URL + `/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.loggerService.token}`,
+        },
+      })
+      .subscribe();
+  }
+
+  getCategoriesArray() {
+    return this.http
+      .get(CAT_FLAT_URL, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${this.loggerService.token}`,
@@ -104,14 +129,12 @@ export class LibraryService {
   }
 
   deleteCategory(id: number) {
-    this.http
-      .delete(CAT_URL + `/${id}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${this.loggerService.token}`,
-        },
-      })
-      .subscribe();
+    this.http.delete(CAT_URL + `/${id}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.loggerService.token}`,
+      },
+    });
   }
 
   createCategory(name: string, topCategory: string) {
@@ -142,6 +165,25 @@ export class LibraryService {
         Authorization: `Bearer ${this.loggerService.token}`,
       },
     });
+  }
+
+  createNote(title: string, note: string, bookId: number) {
+    return this.http
+      .post(
+        NOTES_URL,
+        {
+          bookId,
+          title,
+          note,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.loggerService.token}`,
+          },
+        }
+      )
+      .subscribe();
   }
 
   //======================================================

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoggerService } from '../logger.service';
+import { LoggerService } from '../core/services/logger.service';
 import { Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';

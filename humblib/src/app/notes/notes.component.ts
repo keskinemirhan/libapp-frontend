@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LibraryService } from '../library.service';
-import { LoggerService } from '../logger.service';
+import { LibraryService } from '../core';
+import { LoggerService } from '../core';
 
 @Component({
   selector: 'app-notes',

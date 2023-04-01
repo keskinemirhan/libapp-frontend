@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, of } from 'rxjs';
 import { LOG_URL, PROF_URL, USER_URL } from './var';
-@Injectable()
+
+@Injectable({
+  providedIn: 'root',
+})
 export class LoggerService {
   isLogged: boolean = false;
   token: string = '';

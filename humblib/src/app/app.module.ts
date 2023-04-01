@@ -11,18 +11,16 @@ import { FooterComponent } from './footer/footer.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoggerService } from './core/auth/logger.service';
-import { LibraryService } from './library.service';
 import { AdbookComponent } from './adbook/adbook.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { CategorizationComponent } from './categorization/categorization.component';
 import { RegisterComponent } from './register/register.component';
 import { LibraryComponent } from './library/library.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NotesComponent } from './notes/notes.component';
 import { AddnoteComponent } from './addnote/addnote.component';
 import { BooknotesComponent } from './booknotes/booknotes.component';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +41,7 @@ import { BooknotesComponent } from './booknotes/booknotes.component';
     AddnoteComponent,
     BooknotesComponent,
   ],
+
   imports: [
     HttpClientModule,
     ReactiveFormsModule,
@@ -50,8 +49,9 @@ import { BooknotesComponent } from './booknotes/booknotes.component';
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
+    CoreModule,
   ],
-  providers: [LoggerService, LibraryService, MatCheckboxModule],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

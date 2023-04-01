@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LibraryService } from '../library.service';
+import { LibraryService } from '../core';
 
 @Component({
   selector: 'app-adbook',
