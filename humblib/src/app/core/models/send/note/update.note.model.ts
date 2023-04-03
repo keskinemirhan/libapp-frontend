@@ -1,7 +1,7 @@
 export interface UpdateNote {
   id: number;
 
-  title: string;
+  title?: string;
 
-  note: string;
+  note?: string;
 }
