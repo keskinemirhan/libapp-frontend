@@ -25,12 +25,17 @@ export class LibraryService {
   categoriesNestedState = new BehaviorSubject<ReceivedCategoryModel>({});
   categoriesState = new BehaviorSubject<Array<ReceivedCategoryModel>>([]);
   notesState = new BehaviorSubject<Array<ReceivedNoteModel>>([]);
+  loading = new BehaviorSubject<boolean>(true);
   //=================== BOOKS ==================
 
   getBooks$() {
-    this.apiService
-      .get$(BOOK_URL)
-      .subscribe((data: any) => this.booksState.next(data));
+    this.apiService.get$(BOOK_URL).subscribe({
+      next: (data: any) => {
+        this.loading.next(true);
+        this.booksState.next(data);
+      },
+      complete: () => this.loading.next(false),
+    });
   }
 
   //   getBook() {}
@@ -40,16 +45,16 @@ export class LibraryService {
   }
 
   deleteBook$(id: number) {
-    this.apiService.delete$(BOOK_URL).subscribe(() => this.getBooks$());
+    this.apiService
+      .delete$(BOOK_URL + `/${id}`)
+      .subscribe(() => this.getBooks$());
   }
 
   //temporary implementation
   createBook$(body: CreateBook) {
     this.apiService
       .post$(BOOK_URL, body)
-      .pipe((data: any) =>
-        this.apiService.patch$(BOOK_URL, { bookId: data.bookId, ...body })
-      )
+
       .subscribe(() => this.apiService.get$(BOOK_URL).subscribe());
   }
   // createBook(name: string, categories: Array<string>) {

@@ -1,7 +1,7 @@
 export interface UpdateBook {
   bookId: number;
 
-  name: string;
+  bookName: string;
 
   categories: string[];
 }

@@ -1,7 +1,7 @@
 import { ReceivedCategoryModel } from './received.category.model';
 
 export interface ReceivedBookModel {
-  bookId: number;
+  id: number;
   name: string;
-  categories?: ReceivedCategoryModel;
+  categories?: any;
 }
