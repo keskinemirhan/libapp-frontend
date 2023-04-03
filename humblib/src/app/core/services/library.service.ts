@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { LoggerService } from './logger.service';
 import { BOOK_URL, CAT_FLAT_URL, CAT_URL, NOTES_URL } from './var';
 import { ApiService } from './api.service';
+import { CreateBook, CreateCategory, CreateNote, UpdateBook } from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class LibraryService {
@@ -25,7 +26,7 @@ export class LibraryService {
 
   //   getBook() {}
 
-  patchBook$(body: any) {
+  patchBook$(body: UpdateBook) {
     return this.apiService.patch$(BOOK_URL, body);
   }
 
@@ -34,7 +35,7 @@ export class LibraryService {
   }
 
   //temporary implementation
-  createBook$(body: any) {
+  createBook$(body: CreateBook) {
     return this.apiService
       .post$(BOOK_URL, body)
       .pipe((data: any) =>
@@ -135,7 +136,7 @@ export class LibraryService {
   //   });
   // }
 
-  createCategory$(body: any) {
+  createCategory$(body: CreateCategory) {
     this.apiService.post$(CAT_URL, body);
   }
 
@@ -174,7 +175,7 @@ export class LibraryService {
   //   });
   // }
 
-  createNote$(body: any) {
+  createNote$(body: CreateNote) {
     return this.apiService.post$(NOTES_URL, body);
   }
 

@@ -5,6 +5,7 @@ import { LOG_URL, PROF_URL, USER_URL } from './var';
 import { TokenService } from './token.service';
 import { ApiService } from './api.service';
 import { errorMonitor } from 'mysql2/typings/mysql/lib/Connection';
+import { Login, Register } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +44,7 @@ export class LoggerService {
     this.profileName.next(username);
   }
 
-  login(credentials: any) {
+  login(credentials: Login) {
     return this.apiService.post$(LOG_URL, credentials).subscribe({
       next: (data: any) => {
         this.tokenService.setToken(data.access_token);
@@ -57,7 +58,7 @@ export class LoggerService {
     });
   }
 
-  register(credentials: any) {
+  register(credentials: Register) {
     return this.apiService.post$(USER_URL, credentials).subscribe({
       next: (data: any) => {
         this.login({
