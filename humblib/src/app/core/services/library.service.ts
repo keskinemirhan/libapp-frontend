@@ -4,7 +4,15 @@ import { BehaviorSubject } from 'rxjs';
 import { LoggerService } from './logger.service';
 import { BOOK_URL, CAT_FLAT_URL, CAT_URL, NOTES_URL } from './var';
 import { ApiService } from './api.service';
-import { CreateBook, CreateCategory, CreateNote, UpdateBook } from '../models';
+import {
+  CreateBook,
+  CreateCategory,
+  CreateNote,
+  ReceivedBookModel,
+  ReceivedCategoryModel,
+  ReceivedNoteModel,
+  UpdateBook,
+} from '../models';
 
 @Injectable({ providedIn: 'root' })
 export class LibraryService {
@@ -13,34 +21,36 @@ export class LibraryService {
     private http: HttpClient,
     private loggerService: LoggerService
   ) {}
-  books: Array<any> = [];
-  categories_nested: any;
-  categories: Array<any> = [];
-  subCategories = new BehaviorSubject(0);
-
+  booksState = new BehaviorSubject<Array<ReceivedBookModel>>([]);
+  categoriesNestedState = new BehaviorSubject<ReceivedCategoryModel>({});
+  categoriesState = new BehaviorSubject<Array<ReceivedCategoryModel>>([]);
+  notesState = new BehaviorSubject<Array<ReceivedNoteModel>>([]);
   //=================== BOOKS ==================
 
   getBooks$() {
-    return this.apiService.get$(BOOK_URL);
+    this.apiService
+      .get$(BOOK_URL)
+      .subscribe((data: any) => this.booksState.next(data));
   }
 
   //   getBook() {}
 
   patchBook$(body: UpdateBook) {
-    return this.apiService.patch$(BOOK_URL, body);
+    this.apiService.patch$(BOOK_URL, body).subscribe(() => this.getBooks$());
   }
 
   deleteBook$(id: number) {
-    return this.apiService.delete$(BOOK_URL);
+    this.apiService.delete$(BOOK_URL).subscribe(() => this.getBooks$());
   }
 
   //temporary implementation
   createBook$(body: CreateBook) {
-    return this.apiService
+    this.apiService
       .post$(BOOK_URL, body)
       .pipe((data: any) =>
         this.apiService.patch$(BOOK_URL, { bookId: data.bookId, ...body })
-      );
+      )
+      .subscribe(() => this.apiService.get$(BOOK_URL).subscribe());
   }
   // createBook(name: string, categories: Array<string>) {
   //   return this.http
@@ -80,7 +90,9 @@ export class LibraryService {
   //=================== CATEGORIES ==================
 
   getCategoriesNested$() {
-    return this.apiService.get$(CAT_URL);
+    this.apiService
+      .get$(CAT_URL)
+      .subscribe((data: any) => this.categoriesNestedState.next(data));
   }
 
   // getCategoriesNested() {
@@ -95,7 +107,9 @@ export class LibraryService {
   // }
 
   getCategoriesArray$() {
-    return this.apiService.get$(CAT_FLAT_URL);
+    this.apiService
+      .get$(CAT_FLAT_URL)
+      .subscribe((data: any) => this.categoriesState.next(data));
   }
 
   // getCategoriesArray() {
@@ -109,9 +123,10 @@ export class LibraryService {
   //     .subscribe((data: any) => (this.categories = data));
   // }
 
-  getCategory$() {
-    return this.apiService.get$(CAT_URL);
-  }
+  // getCategory$() {
+  //   return this.apiService.get$(CAT_URL).subscribe((data :  );
+  // }
+
   // getCategory(id: number) {
   //   return this.http
   //     .get(CAT_URL + `/${id}`, {
@@ -124,7 +139,10 @@ export class LibraryService {
   // }
 
   deleteCategory$(id: number) {
-    return this.apiService.delete$(CAT_URL + `/${id}`);
+    this.apiService.delete$(CAT_URL + `/${id}`).subscribe((data: any) => {
+      this.getCategoriesArray$();
+      this.getCategoriesNested$();
+    });
   }
 
   // deleteCategory(id: number) {
@@ -137,7 +155,10 @@ export class LibraryService {
   // }
 
   createCategory$(body: CreateCategory) {
-    this.apiService.post$(CAT_URL, body);
+    this.apiService.post$(CAT_URL, body).subscribe((data: any) => {
+      this.getCategoriesNested$();
+      this.getCategoriesArray$();
+    });
   }
 
   // createCategory(name: string, topCategory: string) {
@@ -163,7 +184,9 @@ export class LibraryService {
   //======================= NOTES ========================
 
   getAllNotes$() {
-    return this.apiService.get$(NOTES_URL);
+    this.apiService
+      .get$(NOTES_URL)
+      .subscribe((data: any) => this.notesState.next(data));
   }
 
   // getAllNotes() {
@@ -176,7 +199,7 @@ export class LibraryService {
   // }
 
   createNote$(body: CreateNote) {
-    return this.apiService.post$(NOTES_URL, body);
+    this.apiService.post$(NOTES_URL, body).subscribe(() => this.getAllNotes$());
   }
 
   // createNote(title: string, note: string, bookId: number) {

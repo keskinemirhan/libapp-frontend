@@ -9,13 +9,14 @@ import { LibraryService } from '../core';
 })
 export class ListComponent implements OnInit {
   constructor(public libraryService: LibraryService, private router: Router) {}
+  books: any = [];
   ngOnInit(): void {
-    this.libraryService.getBooks();
+    this.libraryService.getBooks$();
+    this.libraryService.booksState
+      .asObservable()
+      .subscribe((data: any) => (this.books = data));
   }
   onDelete(id: number) {
-    this.libraryService.deleteBook(id);
-    this.router
-      .navigateByUrl('/', { skipLocationChange: true })
-      .then(() => this.router.navigate(['/list']));
+    this.libraryService.deleteBook$(id);
   }
 }

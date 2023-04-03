@@ -3,6 +3,8 @@ import { LoggerService } from '../core/services/logger.service';
 import { Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Login } from '../core/models';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,27 +12,24 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  constructor(public loggerService: LoggerService, private router: Router) {}
-  model = { email: 'user@email.com', password: 'password' };
+  form: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    public loggerService: LoggerService,
+    private router: Router
+  ) {
+    this.form = this.fb.group({
+      username: [''],
+      password: [''],
+    });
+  }
+
   onSubmit() {
-    this.loggerService
-      .login(this.model.email, this.model.password)
-      .pipe(
-        catchError((err: HttpErrorResponse) => {
-          this.loggerService.feedBack = err.message;
-          throw err;
-        })
-      )
-      .subscribe((data: any) => {
-        this.loggerService.isLogged = true;
-        this.loggerService.token = data.access_token;
-        this.loggerService
-          .getProfile(this.loggerService.token)
-          .subscribe((data: any) => {
-            this.loggerService.profileName = data.username;
-            localStorage.setItem('humblibToken', this.loggerService.token);
-            return this.router.navigate(['/']);
-          });
-      });
+    const credentials: Login = {
+      email: this.form.value.username,
+      password: this.form.value.password,
+    };
+    this.loggerService.login(credentials);
+    if (this.loggerService.isLogged.getValue()) this.router.navigateByUrl('/');
   }
 }

@@ -15,12 +15,12 @@
         name="name"
         id="name"
       />
-      <div *ngFor="let cat of this.libraryService.categories">
+      <div *ngFor="let cat of this.categories">
         <label
           ><input
             class="m-2"
             type="checkbox"
-            [value]="cat.name"
+            [value]="cat.id"
             (change)="onCheckboxChange($event)"
             id=""
           />

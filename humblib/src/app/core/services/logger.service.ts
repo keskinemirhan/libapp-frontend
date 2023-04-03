@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, catchError, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { LOG_URL, PROF_URL, USER_URL } from './var';
 import { TokenService } from './token.service';
 import { ApiService } from './api.service';
-import { errorMonitor } from 'mysql2/typings/mysql/lib/Connection';
 import { Login, Register } from '../models';
 
 @Injectable({
@@ -45,7 +44,7 @@ export class LoggerService {
   }
 
   login(credentials: Login) {
-    return this.apiService.post$(LOG_URL, credentials).subscribe({
+    this.apiService.post$(LOG_URL, credentials).subscribe({
       next: (data: any) => {
         this.tokenService.setToken(data.access_token);
         this.apiService.get$(PROF_URL).subscribe({
@@ -62,7 +61,7 @@ export class LoggerService {
     return this.apiService.post$(USER_URL, credentials).subscribe({
       next: (data: any) => {
         this.login({
-          username: credentials.username,
+          email: credentials.email,
           password: credentials.password,
         });
       },

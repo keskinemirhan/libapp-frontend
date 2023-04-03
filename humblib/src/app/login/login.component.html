@@ -1,41 +1,41 @@
-<div class="login container mx-auto text-emerald-900">
-  <div class="flex justify-center mb-48">
+<div class="register container mx-auto">
+  <div class="flex mb-48 flex-col items-center justify-center">
     <form
-      (ngSubmit)="onSubmit()"
-      class="shadow-2xl p-12 flex flex-col"
-      action=""
+      class="flex shadow-xl p-12 flex-col items-center"
+      (submit)="onSubmit()"
+      [formGroup]="form"
     >
-      <div *ngIf="this.loggerService.feedBack">
-        {{ this.loggerService.feedBack }}
+      <div *ngIf="this.loggerService.serverResponse.getValue()">
+        {{ this.loggerService.serverResponse.getValue() }}
       </div>
-      <label class="my-1" for="email">Email</label>
+      <label class="self-start text-emerald-900 text-md" for="username"
+        >Email</label
+      >
       <input
-        class="my-1 p-2 bg-emerald-100 rounded border"
-        required
-        type="email"
-        name="email"
-        id="email"
-        [(ngModel)]="model.email"
+        class="bg-emerald-100 p-2 my-1 rounded border"
+        required=""
+        formControlName="username"
+        type="text"
+        name="username"
+        id="username"
       />
-      <label class="my-1" for="password">Password</label>
+      <label class="self-start text-emerald-900 text-md" for="password"
+        >Password</label
+      >
       <input
-        [(ngModel)]="model.password"
-        class="my-1 p-2 bg-emerald-100 rounded border"
+        class="bg-emerald-100 p-2 my-1 rounded border"
         required
+        formControlName="password"
         type="password"
-        name="password"
+        name="password "
         id="password"
       />
       <button
-        class="hover:bg-emerald-700 transition-all mt-6 active:shadow-2xl rounded p-1 mx-auto bg-emerald-900 text-cyan-50"
-        type="submit "
+        class="bg-emerald-900 text-cyan-50 p-2 m-2 rounded hover:bg-emerald-600 transition"
+        type="submit"
       >
         Login
       </button>
-
-      <a class="text-center text-sm mt-2" routerLink="/register">
-        or Register</a
-      >
     </form>
   </div>
 </div>

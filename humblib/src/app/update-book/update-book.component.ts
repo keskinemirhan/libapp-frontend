@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 import { LibraryService } from '../core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UpdateBook } from '../core/models';
 @Component({
   selector: 'app-update-book',
   templateUrl: './update-book.component.html',
@@ -11,6 +12,7 @@ export class UpdateBookComponent implements OnInit {
   bookId: number = 0;
   form: FormGroup;
   book: any = null;
+  categories: any[] = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -30,7 +32,7 @@ export class UpdateBookComponent implements OnInit {
     } else {
       let i: number = 0;
       categories.controls.forEach((item: any) => {
-        if (item.value == e.target.value) {
+        if (item.value == parseInt(e.target.value)) {
           categories.removeAt(i);
           return;
         }
@@ -44,25 +46,28 @@ export class UpdateBookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.libraryService.getCategoriesArray();
+    this.libraryService.getCategoriesArray$();
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
-    this.book = this.libraryService.books.find((val) => val.id === this.bookId);
-    //@ts-ignore
-    this.form.get('name').setValue(this.book.name);
-    for (let cat of this.book.categories) {
-      (this.form.get('categories') as FormArray).push(
-        new FormControl(cat.name)
-      );
-    }
+    this.libraryService.getBooks$();
+    this.libraryService.booksState.asObservable().subscribe((data: any[]) => {
+      if (data) {
+        this.book = data.find((val) => val.bookId == this.bookId);
+        //@ts-ignore
+        this.form.get('name').setValue(this.book.name);
+        for (let cat of this.book.categories) {
+          (this.form.get('categories') as FormArray).push(
+            new FormControl(cat.name)
+          );
+        }
+      }
+    });
   }
   onSubmit() {
-    this.libraryService.patchBook(
-      this.bookId,
-      this.form.value.name,
-      this.form.value.categories
-    );
-    this.router
-      .navigateByUrl('/', { skipLocationChange: true })
-      .then(() => this.router.navigateByUrl('/list'));
+    const updateBook: UpdateBook = {
+      bookId: this.bookId,
+      name: this.form.value.name,
+      categories: this.form.value.categories,
+    };
+    this.libraryService.patchBook$(updateBook);
   }
 }

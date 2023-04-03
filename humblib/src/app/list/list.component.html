@@ -2,7 +2,7 @@
   <div class="flex mx-auto flex-col max-w-2xl items-stretch justify-center">
     <div
       class="hover:bg-emerald-900 transition flex items-center bg-emerald-800 text-cyan-50 m-2 rounded-lg"
-      *ngFor="let book of this.libraryService.books"
+      *ngFor="let book of this.books"
     >
       <div class="m-2 flex-1">{{ book.name }}</div>
       <div class="m-2 flex-1">

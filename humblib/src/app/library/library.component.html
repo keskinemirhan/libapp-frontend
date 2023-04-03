@@ -1,10 +1,10 @@
 <div class="container mx-auto">
-  <div *ngFor="let cat of this.libraryService.categories">
+  <div *ngFor="let cat of this.categories">
     <div class="text-center text-cyan-50 rounded-full m-4 bg-emerald-800">
       {{ cat.name }}
     </div>
     <div class="flex-wrap justify-center m-5 flex">
-      <div *ngFor="let book of this.libraryService.books">
+      <div *ngFor="let book of this.books">
         <a class="transition" *ngIf="isCat(book, cat)">
           <div
             class="book w-48 m-2 transition p-2 h-64 bg-slate-200 shadow-2xl rounded-sm flex justify-center items-center"

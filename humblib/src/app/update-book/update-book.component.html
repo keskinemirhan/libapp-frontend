@@ -1,7 +1,7 @@
 <form [formGroup]="form" (submit)="onSubmit()">
   <label for="name">Name</label>
   <input type="text" formControlName="name" name="name" id="name" />
-  <div *ngFor="let cat of this.libraryService.categories">
+  <div *ngFor="let cat of this.libraryService.categoriesState.getValue()">
     <label
       ><input
         [attr.checked]="isCat(cat) ? '' : null"

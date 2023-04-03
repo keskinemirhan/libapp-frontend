@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoggerService } from '../core/services/logger.service';
 
 @Component({
@@ -6,7 +6,18 @@ import { LoggerService } from '../core/services/logger.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   constructor(public loggerService: LoggerService) {}
-  profileName: string = '';
+  profile = '';
+
+  ngOnInit(): void {
+    this.loggerService.profileName
+      .asObservable()
+      .subscribe(
+        (data: any) =>
+          (this.profile = this.loggerService.isLogged.getValue()
+            ? data
+            : 'Login')
+      );
+  }
 }

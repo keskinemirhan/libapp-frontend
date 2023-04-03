@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LibraryService } from '../core';
+import { CreateCategory } from '../core/models';
 
 @Component({
   selector: 'app-categorization',
@@ -17,19 +18,23 @@ export class CategorizationComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       name: [''],
+      top: [''],
     });
   }
+  categories: any = [];
   onSubmit() {
-    this.libraryService.createCategory(this.form.value.name, '');
-    this.router
-      .navigateByUrl('/', { skipLocationChange: true })
-      .then(() => this.router.navigateByUrl('/categorization'));
+    const createCategory: CreateCategory = {
+      name: this.form.value.name,
+      topCategory: 0,
+    };
+    this.form.reset();
+    this.libraryService.createCategory$(createCategory);
   }
 
-  getChildren(id: number) {
-    this.libraryService.getCategory(id).unsubscribe();
-  }
   ngOnInit() {
-    this.libraryService.getCategoriesNested;
+    this.libraryService.getCategoriesArray$();
+    this.libraryService.categoriesState
+      .asObservable()
+      .subscribe((data: any) => (this.categories = data));
   }
 }

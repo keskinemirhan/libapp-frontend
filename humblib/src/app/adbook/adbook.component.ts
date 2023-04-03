@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LibraryService } from '../core';
+import { CreateBook } from '../core/models';
 
 @Component({
   selector: 'app-adbook',
@@ -20,6 +21,8 @@ export class AdbookComponent implements OnInit {
       categories: this.fb.array([]),
     });
   }
+
+  categories: any = [];
   onCheckboxChange(e: any) {
     const categories: FormArray = this.form.get('categories') as FormArray;
     if (e.target.checked) {
@@ -27,7 +30,7 @@ export class AdbookComponent implements OnInit {
     } else {
       let i: number = 0;
       categories.controls.forEach((item: any) => {
-        if (item.value == e.target.value) {
+        if (item.value == parseInt(e.target.value)) {
           categories.removeAt(i);
           return;
         }
@@ -37,17 +40,16 @@ export class AdbookComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.libraryService.getCategoriesArray();
+    this.libraryService.getCategoriesArray$();
+    this.libraryService.categoriesState
+      .asObservable()
+      .subscribe((data: any) => (this.categories = data));
   }
   onSubmit() {
-    this.libraryService.createBook(
-      this.form.value.name,
-      this.form.value.categories
-    );
-    setTimeout(() => {
-      this.router
-        .navigateByUrl('/', { skipLocationChange: true })
-        .then(() => this.router.navigateByUrl('/list'));
-    }, 100);
+    const createBook: CreateBook = {
+      name: this.form.value.name,
+      categories: this.form.value.categories,
+    };
+    this.libraryService.createBook$(createBook);
   }
 }

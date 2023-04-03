@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoggerService } from '../core/services/logger.service';
+import { Register } from '../core/models';
 
 @Component({
   selector: 'app-register',
@@ -23,11 +24,11 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    this.loggerService.register(
-      this.form.value.username,
-      this.form.value.password,
-      this.form.value.email
-    );
-    this.router.navigateByUrl('/login');
+    const register: Register = {
+      username: this.form.value.username,
+      password: this.form.value.password,
+      email: this.form.value.email,
+    };
+    this.loggerService.register(register);
   }
 }

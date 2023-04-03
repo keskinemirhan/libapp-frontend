@@ -16,11 +16,9 @@ export class NotesComponent implements OnInit {
   ) {}
   notes: any[] = [];
   ngOnInit() {
-    if (!this.loggerService.isLogged) {
-      return this.router.navigate(['/login']);
-    }
-    return this.libraryService
-      .getAllNotes()
+    this.libraryService.getAllNotes$();
+    this.libraryService.notesState
+      .asObservable()
       .subscribe((data: any) => (this.notes = data));
   }
 }
