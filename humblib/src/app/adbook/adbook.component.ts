@@ -51,5 +51,6 @@ export class AdbookComponent implements OnInit {
       categories: this.form.value.categories,
     };
     this.libraryService.createBook$(createBook);
+    this.router.navigateByUrl('/list');
   }
 }
