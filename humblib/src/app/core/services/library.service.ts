@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, last } from 'rxjs';
 import { LoggerService } from './logger.service';
 import { BOOK_URL, CAT_FLAT_URL, CAT_URL, NOTES_URL } from './var';
 import { ApiService } from './api.service';
@@ -26,6 +26,7 @@ export class LibraryService {
   categoriesState = new BehaviorSubject<Array<ReceivedCategoryModel>>([]);
   notesState = new BehaviorSubject<Array<ReceivedNoteModel>>([]);
   loading = new BehaviorSubject<boolean>(true);
+
   //=================== BOOKS ==================
 
   getBooks$() {
@@ -38,7 +39,9 @@ export class LibraryService {
     });
   }
 
-  //   getBook() {}
+  getBook$(id: number) {
+    return this.apiService.get$(BOOK_URL + `/${id}`).pipe(last());
+  }
 
   patchBook$(body: UpdateBook) {
     this.apiService.patch$(BOOK_URL, body).subscribe(() => this.getBooks$());
@@ -55,7 +58,7 @@ export class LibraryService {
     this.apiService
       .post$(BOOK_URL, body)
 
-      .subscribe(() => this.apiService.get$(BOOK_URL).subscribe());
+      .subscribe(() => this.getBooks$());
   }
   // createBook(name: string, categories: Array<string>) {
   //   return this.http
@@ -202,6 +205,14 @@ export class LibraryService {
   //     },
   //   });
   // }
+
+  getNotesByBook$(id: number) {
+    return this.apiService.get$(NOTES_URL + '/book' + `/${id}`).pipe(last());
+  }
+
+  getNote$(id: number) {
+    this.apiService.get$(NOTES_URL + `/${id}`);
+  }
 
   createNote$(body: CreateNote) {
     this.apiService.post$(NOTES_URL, body).subscribe(() => this.getAllNotes$());

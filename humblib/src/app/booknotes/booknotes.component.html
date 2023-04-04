@@ -1,1 +1,24 @@
-<p>booknotes works!</p>
+<div class="container mx-auto">
+  <div class="flex justify-center text-emerald-900 items-center flex-col">
+    <div class="text-xl my-2 bg-emerald-900 text-cyan-50 p-2 rounded">
+      {{ book.name }}
+    </div>
+    <a
+      class="bg-emerald-300 transition text-emerald-900 p-2 rounded hover:bg-emerald-900 hover:text-emerald-50"
+      [routerLink]="['/addnote', bookId]"
+      >+ Add</a
+    >
+
+    <div
+      *ngFor="let note of notes"
+      class="bg-emerald-200 w-1/2 rounded p-4 my-2"
+    >
+      <div class="text-xl">{{ note.title }}</div>
+
+      <div class="text-sm max-h-48 overflow-hidden">{{ note.note }}</div>
+      <div class="my-2 p-2 text-xs border-t-emerald-900 border-t">
+        {{ note.updated | date }}
+      </div>
+    </div>
+  </div>
+</div>

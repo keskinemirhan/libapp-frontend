@@ -15,7 +15,7 @@
               <p class="inline-block text-base">{{ book.name }}</p>
               <a
                 class="bg-slate-500 p-1 rounded text-slate-100 hover:bg-slate-400"
-                routerLink="/addbook"
+                [routerLink]="['/booknotes', book.id]"
                 >Notes</a
               >
             </div>
