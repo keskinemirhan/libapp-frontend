@@ -23,12 +23,15 @@ export class LoggerService {
   initLogin() {
     const token = this.tokenService.getToken();
     if (token) {
-      this.isLogged.next(true);
       this.apiService.get$(PROF_URL).subscribe({
         next: (data: any) => {
+          this.isLogged.next(true);
           this.setLogInfo(data.username);
         },
-        error: (err) => this.deleteLogInfo(),
+        error: (err) => {
+          this.deleteLogInfo();
+          this.isLogged.next(false);
+        },
       });
     }
   }
