@@ -5,16 +5,24 @@
       [formGroup]="form"
       (ngSubmit)="onSubmit()"
     >
-      <label class="bg-emerald-900 p-2 rounded-full text-cyan-50 m-2" for="name"
-        >Book Name</label
+      <mat-form-field appearance="fill">
+        <mat-label for="name">Book Name</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="name"
+          name="name"
+          id="name"
+        />
+      </mat-form-field>
+
+      <div
+        *ngIf="this.categories.length"
+        class="bg-emerald-900 p-2 text-cyan-50 rounded-full"
       >
-      <input
-        class="p-2 bg-emerald-100 text-emerald-900"
-        type="text"
-        formControlName="name"
-        name="name"
-        id="name"
-      />
+        Categories
+      </div>
+
       <div *ngFor="let cat of this.categories">
         <mat-checkbox
           class="m-2"
@@ -26,11 +34,13 @@
           {{ cat.name }}
         </mat-checkbox>
       </div>
-      <input
+      <button
+        matRipple
         class="bg-emerald-900 p-2 m-2 rounded-md text-cyan-50 hover:bg-emerald-700 transition hover:cursor-pointer"
         type="submit"
-        value="Submit"
-      />
+      >
+        Submit
+      </button>
     </form>
   </div>
 </div>

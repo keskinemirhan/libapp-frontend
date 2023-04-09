@@ -12,16 +12,13 @@
         (submit)="onSubmit()"
         [formGroup]="form"
       >
-        <div class="text-xl text-emerald-900">New Category</div>
-        <label for=""></label>
-        <input
-          class="m-2 p-2 bg-emerald-100 rounded-md text-emerald-900"
-          formControlName="name"
-          type="text"
-          name=""
-          id=""
-        />
+        <div class="text-xl text-emerald-900 m-2">New Category</div>
+        <mat-form-field>
+          <mat-label>Category Name</mat-label>
+          <input matInput formControlName="name" type="text" name="" id="" />
+        </mat-form-field>
         <button
+          matRipple
           class="m-2 p-2 bg-emerald-900 rounded-md hover:bg-emerald-600 text-cyan-50 transition"
           type="submit"
         >

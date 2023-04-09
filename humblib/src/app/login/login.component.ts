@@ -2,7 +2,12 @@ import { Component } from '@angular/core';
 import { LoggerService, status } from '../core/services/logger.service';
 import { Router } from '@angular/router';
 import { Login } from '../core/models';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import {
   MatDialogRef,
   MAT_DIALOG_DATA,
@@ -26,8 +31,8 @@ export class LoginComponent {
     private dialog: MatDialog
   ) {
     this.form = this.fb.group({
-      username: [''],
-      password: [''],
+      username: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required]),
     });
   }
 
@@ -38,6 +43,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    if (!this.form.get('username')?.valid || !this.form.get('password')?.valid)
+      return;
     const credentials: Login = {
       email: this.form.value.username,
       password: this.form.value.password,

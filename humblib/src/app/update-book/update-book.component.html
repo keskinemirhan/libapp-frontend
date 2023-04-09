@@ -6,16 +6,24 @@
       class="p-5 shadow-lg flex max-w-md items-center justify-center flex-col"
       (submit)="onSubmit()"
     >
-      <label class="bg-emerald-900 p-2 rounded-full text-cyan-50 m-2" for="name"
-        >Book Name</label
+      <mat-form-field>
+        <mat-label>Book Name</mat-label>
+        <input
+          matInput
+          type="text"
+          required
+          class="p-2 bg-emerald-100 text-emerald-900"
+          formControlName="name"
+          name="name"
+          id="name"
+        />
+      </mat-form-field>
+      <div
+        *ngIf="this.libraryService.categoriesState.getValue().length"
+        class="bg-emerald-900 p-2 text-cyan-50 rounded-full"
       >
-      <input
-        type="text"
-        class="p-2 bg-emerald-100 text-emerald-900"
-        formControlName="name"
-        name="name"
-        id="name"
-      />
+        Categories
+      </div>
       <div *ngFor="let cat of this.libraryService.categoriesState.getValue()">
         <mat-checkbox
           color="primary"

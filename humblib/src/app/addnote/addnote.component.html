@@ -1,29 +1,31 @@
 <div class="container mx-auto">
   <form class="m-12 text-center" [formGroup]="form" (submit)="onSubmit()">
-    <div class="text-emerald-900 text-xl">New Note</div>
+    <div class="text-emerald-900 text-xl p-2 m-2">New Note</div>
     <div class="mx-auto max-w-xl flex flex-col">
-      <label class="self-start text-emerald-900 text-md" for="title"
-        >Title</label
-      >
-      <input
-        class="bg-emerald-100 p-2 my-1 rounded border"
-        required=""
-        formControlName="title"
-        type="text"
-        name="title"
-        id="title"
-      />
-      <label class="self-start text-emerald-900 text-md" for="note">Note</label>
-      <textarea
-        class="h-20 bg-emerald-100 p-2 my-1 rounded border"
-        required
-        formControlName="note"
-        type="text"
-        name="note "
-        id="note"
-      ></textarea>
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          formControlName="title"
+          type="text"
+          name="title"
+          id="title"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Note</mat-label>
+        <textarea
+          matInput
+          formControlName="note"
+          type="text"
+          name="note "
+          id="note"
+        ></textarea>
+      </mat-form-field>
     </div>
+
     <button
+      matRipple
       class="bg-emerald-900 text-cyan-50 p-2 m-2 rounded hover:bg-emerald-600 transition"
       type="submit"
     >
