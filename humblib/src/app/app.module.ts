@@ -21,10 +21,7 @@ import { NotesComponent } from './notes/notes.component';
 import { AddnoteComponent } from './addnote/addnote.component';
 import { BooknotesComponent } from './booknotes/booknotes.component';
 import { CoreModule } from './core/core.module';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -54,9 +51,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     BrowserAnimationsModule,
     CoreModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,5 @@
 export interface ReceivedCategoryModel {
-  id?: number;
+  id?: any;
   name?: string;
   parent?: ReceivedCategoryModel;
   children?: ReceivedCategoryModel[];

@@ -25,12 +25,12 @@ export class AdbookComponent implements OnInit {
   categories: any = [];
   onCheckboxChange(e: any) {
     const categories: FormArray = this.form.get('categories') as FormArray;
-    if (e.target.checked) {
-      categories.push(new FormControl(e.target.value));
+    if (e.checked) {
+      categories.push(new FormControl(e.source.value));
     } else {
       let i: number = 0;
       categories.controls.forEach((item: any) => {
-        if (item.value == parseInt(e.target.value)) {
+        if (item.value == parseInt(e.source.value)) {
           categories.removeAt(i);
           return;
         }

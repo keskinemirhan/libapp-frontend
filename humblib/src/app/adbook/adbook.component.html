@@ -16,16 +16,15 @@
         id="name"
       />
       <div *ngFor="let cat of this.categories">
-        <label
-          ><input
-            class="m-2"
-            type="checkbox"
-            [value]="cat.id"
-            (change)="onCheckboxChange($event)"
-            id=""
-          />
+        <mat-checkbox
+          class="m-2"
+          color="primary"
+          [value]="cat.id"
+          (change)="onCheckboxChange($event)"
+          id=""
+        >
           {{ cat.name }}
-        </label>
+        </mat-checkbox>
       </div>
       <input
         class="bg-emerald-900 p-2 m-2 rounded-md text-cyan-50 hover:bg-emerald-700 transition hover:cursor-pointer"
