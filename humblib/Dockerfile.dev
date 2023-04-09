@@ -1,0 +1,5 @@
+FROM node:18.15-alpine3.17 AS build
+ARG port
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+EXPOSE ${port} 49153
