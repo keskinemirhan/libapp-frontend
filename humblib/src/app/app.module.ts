@@ -22,6 +22,9 @@ import { AddnoteComponent } from './addnote/addnote.component';
 import { BooknotesComponent } from './booknotes/booknotes.component';
 import { CoreModule } from './core/core.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     BrowserAnimationsModule,
     CoreModule,
     MatCheckboxModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

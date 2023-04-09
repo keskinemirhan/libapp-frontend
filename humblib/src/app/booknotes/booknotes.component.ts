@@ -17,11 +17,18 @@ export class BooknotesComponent implements OnInit {
   bookId: number = 0;
   book: any = {};
 
+  deleteNote(id: number) {
+    this.libraryService.deleteNote(id);
+  }
+
   ngOnInit(): void {
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
-    this.libraryService
-      .getNotesByBook$(this.bookId)
-      .subscribe((data: any) => (this.notes = data));
+    this.libraryService.notesState
+      .asObservable()
+      .subscribe(
+        (data: any) =>
+          (this.notes = data.filter((data: any) => data.book.id == this.bookId))
+      );
     this.book = this.libraryService
       .getBook$(this.bookId)
       .subscribe((data: any) => (this.book = data));

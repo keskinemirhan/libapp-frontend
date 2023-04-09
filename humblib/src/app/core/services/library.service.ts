@@ -218,6 +218,12 @@ export class LibraryService {
     this.apiService.post$(NOTES_URL, body).subscribe(() => this.getAllNotes$());
   }
 
+  deleteNote(id: number) {
+    this.apiService
+      .delete$(NOTES_URL + `/${id}`)
+      .subscribe(() => this.getAllNotes$());
+  }
+
   // createNote(title: string, note: string, bookId: number) {
   //   return this.http
   //     .post(

@@ -30,5 +30,7 @@ $my-theme: mat.define-light-theme(
 );
 
 @include mat.core-theme($my-theme);
+@include mat.badge-theme($my-theme);
 @include mat.checkbox-theme($my-theme);
+@include mat.fab-theme($my-theme);
 @include mat.button-theme($my-theme);
