@@ -5,9 +5,6 @@
       (submit)="onSubmit()"
       [formGroup]="form"
     >
-      <div *ngIf="this.loggerService.serverResponse.getValue()">
-        {{ this.loggerService.serverResponse.getValue() }}
-      </div>
       <label class="self-start text-emerald-900 text-md" for="username"
         >Email</label
       >

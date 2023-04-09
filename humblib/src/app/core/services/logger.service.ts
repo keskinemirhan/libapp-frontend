@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { LOG_URL, PROF_URL, USER_URL } from './var';
 import { TokenService } from './token.service';
 import { ApiService } from './api.service';
 import { Login, Register } from '../models';
+
+export enum status {
+  EMPTY = 0,
+  WAITING = 1,
+  DONE = 2,
+  FAILED = 3,
+}
 
 @Injectable({
   providedIn: 'root',
@@ -13,10 +19,9 @@ export class LoggerService {
   isLogged = new BehaviorSubject<boolean>(false);
   profileName = new BehaviorSubject<string>('');
   serverResponse = new BehaviorSubject<string>('');
-
+  logStatus = new BehaviorSubject<number>(status.EMPTY);
   constructor(
     private tokenService: TokenService,
-    private router: Router,
     private apiService: ApiService
   ) {}
 
@@ -37,6 +42,7 @@ export class LoggerService {
   }
 
   deleteLogInfo() {
+    this.tokenService.deleteToken();
     this.profileName.next('');
     this.isLogged.next(false);
   }
@@ -47,16 +53,23 @@ export class LoggerService {
   }
 
   login(credentials: Login) {
+    this.logStatus.next(status.WAITING);
+    this.deleteLogInfo();
     this.apiService.post$(LOG_URL, credentials).subscribe({
       next: (data: any) => {
         this.tokenService.setToken(data.access_token);
         this.apiService.get$(PROF_URL).subscribe({
           next: (data: any) => {
             this.setLogInfo(data.username);
+            this.logStatus.next(status.DONE);
           },
         });
       },
-      error: (err) => this.serverResponse.next(err),
+      error: (err) => {
+        this.serverResponse.next(err);
+        this.logStatus.next(status.FAILED);
+      },
+      complete: () => this.logStatus.next(status.WAITING),
     });
   }
 

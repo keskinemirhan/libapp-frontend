@@ -11,13 +11,11 @@ export class ProfileComponent implements OnInit {
   profile = '';
 
   ngOnInit(): void {
-    this.loggerService.profileName
-      .asObservable()
-      .subscribe(
-        (data: any) =>
-          (this.profile = this.loggerService.isLogged.getValue()
-            ? data
-            : 'Login')
-      );
+    this.loggerService.isLogged.asObservable().subscribe((data: boolean) => {
+      this.loggerService.profileName.asObservable().subscribe((data: any) => {
+        if (data) this.profile = data;
+        else this.profile = 'Login';
+      });
+    });
   }
 }
