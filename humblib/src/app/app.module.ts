@@ -32,6 +32,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { NoteDetailComponent } from './note-detail/note-detail.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NoteEditComponent } from './note-edit/note-edit.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AddnoteComponent,
     BooknotesComponent,
     NoteDetailComponent,
+    NoteEditComponent,
   ],
 
   imports: [

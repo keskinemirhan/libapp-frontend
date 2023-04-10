@@ -1,0 +1,35 @@
+<div class="container mx-auto">
+  <form class="m-12 text-center" [formGroup]="form" (submit)="onSubmit()">
+    <div class="text-emerald-900 text-xl p-2 m-2">New Note</div>
+    <div class="mx-auto max-w-xl flex flex-col">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          formControlName="title"
+          type="text"
+          name="title"
+          id="title"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Note</mat-label>
+        <textarea
+          matInput
+          formControlName="note"
+          type="text"
+          name="note "
+          id="note"
+        ></textarea>
+      </mat-form-field>
+    </div>
+
+    <button
+      matRipple
+      class="bg-emerald-900 text-cyan-50 p-2 m-2 rounded hover:bg-emerald-600 transition"
+      type="submit"
+    >
+      Add New Note
+    </button>
+  </form>
+</div>

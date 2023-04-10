@@ -12,6 +12,7 @@ import { NotesComponent } from './notes/notes.component';
 import { AddnoteComponent } from './addnote/addnote.component';
 import { BooknotesComponent } from './booknotes/booknotes.component';
 import { NoteDetailComponent } from './note-detail/note-detail.component';
+import { NoteEditComponent } from './note-edit/note-edit.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'addnote/:id', component: AddnoteComponent },
   { path: 'booknotes/:id', component: BooknotesComponent },
   { path: 'notedetail/:id', component: NoteDetailComponent },
+  { path: 'notedit/:id', component: NoteEditComponent },
 ];
 
 @NgModule({
