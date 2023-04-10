@@ -22,17 +22,18 @@
       >
         Categories
       </div>
-
-      <div *ngFor="let cat of this.categories">
-        <mat-checkbox
-          class="m-2"
-          color="primary"
-          [value]="cat.id"
-          (change)="onCheckboxChange($event)"
-          id=""
-        >
-          {{ cat.name }}
-        </mat-checkbox>
+      <div class="flex flex-wrap">
+        <div class="flex-grow basis-0" *ngFor="let cat of this.categories">
+          <mat-checkbox
+            class="m-2"
+            color="primary"
+            [value]="cat.id"
+            (change)="onCheckboxChange($event)"
+            id=""
+          >
+            {{ cat.name }}
+          </mat-checkbox>
+        </div>
       </div>
       <button
         matRipple

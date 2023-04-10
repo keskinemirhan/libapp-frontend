@@ -24,16 +24,21 @@
       >
         Categories
       </div>
-      <div *ngFor="let cat of this.libraryService.categoriesState.getValue()">
-        <mat-checkbox
-          color="primary"
-          [checked]="isCat(cat) ? '' : null"
-          [value]="cat.id"
-          (change)="onCheckboxChange($event)"
-          id=""
+      <div class="flex flex-wrap">
+        <div
+          class="flex-grow basis-0"
+          *ngFor="let cat of this.libraryService.categoriesState.getValue()"
         >
-          {{ cat.name }}
-        </mat-checkbox>
+          <mat-checkbox
+            color="primary"
+            [checked]="isCat(cat) ? '' : null"
+            [value]="cat.id"
+            (change)="onCheckboxChange($event)"
+            id=""
+          >
+            {{ cat.name }}
+          </mat-checkbox>
+        </div>
       </div>
       <button
         class="bg-emerald-900 p-2 m-2 rounded-md text-cyan-50 hover:bg-emerald-700 transition hover:cursor-pointer"
