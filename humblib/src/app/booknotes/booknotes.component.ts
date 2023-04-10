@@ -23,6 +23,7 @@ export class BooknotesComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
+    this.libraryService.getAllNotes$();
     this.libraryService.notesState
       .asObservable()
       .subscribe(

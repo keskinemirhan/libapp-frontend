@@ -4,7 +4,7 @@
       {{ book.name }}
     </div>
     <button mat-fab color="primary" [routerLink]="['/addnote', bookId]">
-      <mat-icon>add</mat-icon>
+      <mat-icon>note_add</mat-icon>
     </button>
 
     <div
@@ -15,9 +15,24 @@
         <div class="text-xl">
           {{ note.title }}
         </div>
-        <button (click)="deleteNote(note.id)" mat-fab color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
+        <div>
+          <button
+            [routerLink]="['/notedetail', note.book.id]"
+            mat-fab
+            class="m-1"
+            color="primary"
+          >
+            <mat-icon>article</mat-icon>
+          </button>
+          <button
+            class="m-2"
+            (click)="deleteNote(note.id)"
+            mat-fab
+            color="warn"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </div>
 
       <div class="text-sm max-h-48 overflow-hidden">{{ note.note }}</div>
