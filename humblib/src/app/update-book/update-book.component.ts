@@ -28,12 +28,12 @@ export class UpdateBookComponent implements OnInit {
 
   onCheckboxChange(e: any) {
     const categories: FormArray = this.form.get('categories') as FormArray;
-    if (e.target.checked) {
-      categories.push(new FormControl(parseInt(e.target.value)));
+    if (e.checked) {
+      categories.push(new FormControl(parseInt(e.source.value)));
     } else {
       let i: number = 0;
       categories.controls.forEach((item: any) => {
-        if (item.value == e.target.value) {
+        if (item.value == parseInt(e.source.value)) {
           categories.removeAt(i);
           return;
         }
