@@ -14,7 +14,12 @@
       </div>
       <div class="text-xl">{{ note.title }}</div>
 
-      <div class="text-sm max-h-48 overflow-hidden">{{ note.note }}</div>
+      <div
+        [innerHTML]="note.note | line"
+        class="text-sm max-h-48 overflow-hidden"
+      >
+        {{ note.note }}
+      </div>
       <div class="my-2 p-2 text-xs border-t-emerald-900 border-t">
         {{ note.updated | date }}
       </div>

@@ -8,7 +8,9 @@
         >Last Modified {{ note.created | date }}</mat-card-subtitle
       >
       <hr />
-      <mat-card-content class="my-2"> {{ note.note }} </mat-card-content>
+      <mat-card-content [innerHTML]="note.note | line" class="my-2">
+        {{ note.note }}
+      </mat-card-content>
       <mat-card-actions
         ><button
           [routerLink]="['/notedit', note.id]"
