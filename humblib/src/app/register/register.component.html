@@ -5,45 +5,46 @@
       (submit)="onSubmit()"
       [formGroup]="form"
     >
-      <label class="self-start text-emerald-900 text-md" for="email"
-        >Email</label
-      >
-      <input
-        class="bg-emerald-100 p-2 my-1 rounded border"
-        required=""
-        formControlName="email"
-        type="email"
-        name="email"
-        id="email"
-      />
-      <label class="self-start text-emerald-900 text-md" for="username"
-        >Username</label
-      >
-      <input
-        class="bg-emerald-100 p-2 my-1 rounded border"
-        required=""
-        formControlName="username"
-        type="text"
-        name="username"
-        id="username"
-      />
-      <label class="self-start text-emerald-900 text-md" for="password"
-        >Password</label
-      >
-      <input
-        class="bg-emerald-100 p-2 my-1 rounded border"
-        required
-        formControlName="password"
-        type="password"
-        name="password "
-        id="password"
-      />
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          name="email"
+          id="email"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+
+        <input
+          matInput
+          formControlName="username"
+          type="text"
+          name="username"
+          id="username"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          type="password"
+          name="password "
+          id="password"
+        />
+      </mat-form-field>
+
       <button
+        matRipple
         class="bg-emerald-900 text-cyan-50 p-2 m-2 rounded hover:bg-emerald-600 transition"
         type="submit"
       >
         Register
       </button>
+      <a class="text-emerald-900" routerLink="/login">or Login</a>
     </form>
   </div>
 </div>
