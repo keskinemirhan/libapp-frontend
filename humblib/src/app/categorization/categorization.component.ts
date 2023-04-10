@@ -23,7 +23,7 @@ export class CategorizationComponent implements OnInit {
   ) {
     this.form = this.fb.group({
       name: new FormControl('', Validators.required),
-      top: new FormControl('', Validators.required),
+      top: [0],
     });
   }
   categories: any = [];
@@ -35,6 +35,10 @@ export class CategorizationComponent implements OnInit {
     };
     this.form.reset();
     this.libraryService.createCategory$(createCategory);
+  }
+
+  deleteCat(id: number) {
+    this.libraryService.deleteCategory$(id);
   }
 
   ngOnInit() {
