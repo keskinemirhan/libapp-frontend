@@ -1,29 +1,44 @@
 <div class="container mx-auto">
-  <div *ngFor="let cat of this.categories">
-    <div class="text-center text-cyan-50 rounded-full m-4 bg-emerald-800">
-      {{ cat.name }}
-    </div>
-    <div class="flex-wrap justify-center m-5 flex">
-      <div *ngFor="let book of this.books">
-        <a class="transition" *ngIf="isCat(book, cat)">
-          <div
-            class="book w-48 m-2 transition p-2 h-64 bg-slate-200 shadow-2xl rounded-sm flex justify-center items-center"
+  <div class="flex justify-center">
+    <div class="max-w-2xl">
+      <mat-chip-listbox multiple="">
+        <mat-chip-option
+          [selected]="!filtered"
+          (selectionChange)="clearFilter($event)"
+        >
+          <mat-icon matChipAvatar>library_books</mat-icon>All
+        </mat-chip-option>
+        <div *ngFor="let cat of this.categories">
+          <mat-chip-option
+            [value]="cat"
+            [selected]="!allSelectedResponse"
+            (selectionChange)="selectCategory($event)"
+            >{{ cat.name }}</mat-chip-option
           >
-            <div
-              class="flex flex-col items-center gap-24 justify-center w-full h-full border border-slate-900"
+        </div>
+      </mat-chip-listbox>
+    </div>
+  </div>
+  <div class="flex-wrap justify-center m-5 flex">
+    <div *ngFor="let book of this.filteredBooks.getValue()">
+      <a class="transition">
+        <div
+          class="book w-48 m-2 transition p-2 h-64 bg-slate-200 shadow-2xl rounded-sm flex justify-center items-center"
+        >
+          <div
+            class="flex flex-col items-center gap-24 justify-center w-full h-full border border-slate-900"
+          >
+            <p class="inline-block text-base">{{ book.name }}</p>
+            <button
+              [matBadge]="getNotesCount(book.id)"
+              class="bg-slate-500 p-1 rounded text-slate-100 hover:bg-slate-400"
+              [routerLink]="['/booknotes', book.id]"
             >
-              <p class="inline-block text-base">{{ book.name }}</p>
-              <button
-                [matBadge]="getNotesCount(book.id)"
-                class="bg-slate-500 p-1 rounded text-slate-100 hover:bg-slate-400"
-                [routerLink]="['/booknotes', book.id]"
-              >
-                Notes
-              </button>
-            </div>
+              Notes
+            </button>
           </div>
-        </a>
-      </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>
