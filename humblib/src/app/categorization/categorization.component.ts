@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { LibraryService } from '../core';
 import { CreateCategory } from '../core/models';
@@ -17,12 +22,13 @@ export class CategorizationComponent implements OnInit {
     public libraryService: LibraryService
   ) {
     this.form = this.fb.group({
-      name: [''],
-      top: [''],
+      name: new FormControl('', Validators.required),
+      top: new FormControl('', Validators.required),
     });
   }
   categories: any = [];
   onSubmit() {
+    if (!this.form.valid) return;
     const createCategory: CreateCategory = {
       name: this.form.value.name,
       topCategory: 0,

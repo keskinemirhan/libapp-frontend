@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { LibraryService } from '../core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { CreateNote } from '../core/models';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -18,8 +23,8 @@ export class AddnoteComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.form = fb.group({
-      title: [''],
-      note: [''],
+      title: new FormControl('', Validators.required),
+      note: new FormControl('', Validators.required),
     });
   }
   bookId: number = 0;
@@ -27,6 +32,7 @@ export class AddnoteComponent implements OnInit {
     this.bookId = Number(this.route.snapshot.paramMap.get('id'));
   }
   onSubmit() {
+    if (!this.form.valid) return;
     const createNote: CreateNote = {
       title: this.form.value.title,
       note: this.form.value.note,

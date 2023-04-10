@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { LibraryService } from '../core';
 import { CreateBook } from '../core/models';
@@ -17,7 +23,7 @@ export class AdbookComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      name: [''],
+      name: new FormControl('', Validators.required),
       categories: this.fb.array([]),
     });
   }
@@ -46,6 +52,7 @@ export class AdbookComponent implements OnInit {
       .subscribe((data: any) => (this.categories = data));
   }
   onSubmit() {
+    if (!this.form.valid) return;
     const createBook: CreateBook = {
       name: this.form.value.name,
       categories: this.form.value.categories,
