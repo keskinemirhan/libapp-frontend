@@ -36,5 +36,6 @@ export class RegisterComponent {
       email: this.form.value.email,
     };
     this.loggerService.register(register);
+    this.router.navigateByUrl('/');
   }
 }

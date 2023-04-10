@@ -43,8 +43,7 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (!this.form.get('username')?.valid || !this.form.get('password')?.valid)
-      return;
+    if (!this.form.valid) return;
     const credentials: Login = {
       email: this.form.value.username,
       password: this.form.value.password,
