@@ -23,12 +23,8 @@ export class NoteDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.noteId = Number(this.route.snapshot.paramMap.get('id'));
-    this.libraryService.getAllNotes$();
-    this.libraryService.notesState
-      .asObservable()
-      .subscribe(
-        (data: any) =>
-          (this.note = data.find((data: any) => data.id === this.noteId))
-      );
+    this.libraryService
+      .getNote$(this.noteId)
+      .subscribe((data: any) => (this.note = data));
   }
 }
