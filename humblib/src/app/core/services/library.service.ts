@@ -12,6 +12,7 @@ import {
   ReceivedCategoryModel,
   ReceivedNoteModel,
   UpdateBook,
+  UpdateNote,
 } from '../models';
 
 @Injectable({ providedIn: 'root' })
@@ -211,11 +212,17 @@ export class LibraryService {
   }
 
   getNote$(id: number) {
-    this.apiService.get$(NOTES_URL + `/${id}`);
+    return this.apiService.get$(NOTES_URL + `/${id}`).pipe(last());
   }
 
   createNote$(body: CreateNote) {
     this.apiService.post$(NOTES_URL, body).subscribe(() => this.getAllNotes$());
+  }
+
+  updateNote(body: UpdateNote) {
+    this.apiService
+      .patch$(NOTES_URL, body)
+      .subscribe(() => this.getAllNotes$());
   }
 
   deleteNote(id: number) {
