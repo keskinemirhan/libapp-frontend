@@ -11,6 +11,7 @@ import { LibraryComponent } from './library/library.component';
 import { NotesComponent } from './notes/notes.component';
 import { AddnoteComponent } from './addnote/addnote.component';
 import { BooknotesComponent } from './booknotes/booknotes.component';
+import { NoteDetailComponent } from './note-detail/note-detail.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'notes', component: NotesComponent },
   { path: 'addnote/:id', component: AddnoteComponent },
   { path: 'booknotes/:id', component: BooknotesComponent },
+  { path: 'notedetail/:id', component: NoteDetailComponent },
 ];
 
 @NgModule({

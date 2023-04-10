@@ -29,6 +29,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
+import { NoteDetailComponent } from './note-detail/note-detail.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,7 @@ import { MatRippleModule } from '@angular/material/core';
     NotesComponent,
     AddnoteComponent,
     BooknotesComponent,
+    NoteDetailComponent,
   ],
 
   imports: [
@@ -66,6 +70,8 @@ import { MatRippleModule } from '@angular/material/core';
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
+    MatCardModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
