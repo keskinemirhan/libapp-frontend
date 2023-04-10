@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { LibraryService } from '../core';
-import { LoggerService } from '../core';
 
 @Component({
   selector: 'app-notes',
@@ -9,11 +7,7 @@ import { LoggerService } from '../core';
   styleUrls: ['./notes.component.css'],
 })
 export class NotesComponent implements OnInit {
-  constructor(
-    private router: Router,
-    public libraryService: LibraryService,
-    private loggerService: LoggerService
-  ) {}
+  constructor(public libraryService: LibraryService) {}
   notes: any[] = [];
   ngOnInit() {
     this.libraryService.getAllNotes$();
