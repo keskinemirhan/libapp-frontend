@@ -36,6 +36,7 @@ export class LoggerService {
         error: (err) => {
           this.deleteLogInfo();
           this.isLogged.next(false);
+          throw err;
         },
       });
     }
@@ -68,6 +69,7 @@ export class LoggerService {
       error: (err) => {
         this.serverResponse.next(err);
         this.logStatus.next(status.FAILED);
+        throw err;
       },
       complete: () => this.logStatus.next(status.WAITING),
     });
@@ -81,7 +83,10 @@ export class LoggerService {
           password: credentials.password,
         });
       },
-      error: (err) => this.serverResponse.next(err),
+      error: (err) => {
+        this.serverResponse.next(err);
+        throw err;
+      },
     });
   }
 
