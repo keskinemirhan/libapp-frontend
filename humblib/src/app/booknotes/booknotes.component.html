@@ -1,6 +1,6 @@
 <div class="container mx-auto">
   <div class="flex justify-center text-emerald-900 items-center flex-col">
-    <div class="text-xl my-2 bg-emerald-900 text-cyan-50 p-2 rounded">
+    <div class="text-3xl my-2 bg-emerald-900 text-cyan-50 p-2 rounded">
       {{ book.name }}
     </div>
     <button mat-fab color="primary" [routerLink]="['/addnote', bookId]">
@@ -9,27 +9,23 @@
 
     <div
       *ngFor="let note of notes"
-      class="bg-emerald-200 w-1/2 rounded p-4 my-2"
+      style="max-width: 450px"
+      class="bg-white rounded-3xl p-4 w-full shadow-2xl my-2"
     >
-      <div class="flex justify-between">
-        <div class="text-xl">
+      <div class="flex items-center justify-between">
+        <div class="text-2xl">
           {{ note.title }}
         </div>
         <div>
           <button
             [routerLink]="['/notedetail', note.id]"
             mat-fab
-            class="m-1"
             color="primary"
+            class="mx-1"
           >
             <mat-icon>article</mat-icon>
           </button>
-          <button
-            class="m-2"
-            (click)="deleteNote(note.id)"
-            mat-fab
-            color="warn"
-          >
+          <button (click)="deleteNote(note.id)" mat-fab color="warn">
             <mat-icon>delete</mat-icon>
           </button>
         </div>

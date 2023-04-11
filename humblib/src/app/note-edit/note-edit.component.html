@@ -1,6 +1,11 @@
 <div class="container mx-auto">
-  <form class="m-12 text-center" [formGroup]="form" (submit)="onSubmit()">
-    <div class="text-emerald-900 text-xl p-2 m-2">New Note</div>
+  <form
+    style="max-width: 578px"
+    class="mx-auto mt-12 border-2 border-emerald-900 bg-white rounded-3xl p-4 text-center"
+    [formGroup]="form"
+    (submit)="onSubmit()"
+  >
+    <div class="text-emerald-900 text-3xl p-2 m-2">Edit Note</div>
     <div class="mx-auto max-w-xl flex flex-col">
       <mat-form-field>
         <mat-label>Title</mat-label>

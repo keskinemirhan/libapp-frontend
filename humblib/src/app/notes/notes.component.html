@@ -5,18 +5,18 @@
     </div>
     <div
       *ngFor="let note of notes"
-      class="bg-emerald-200 w-1/2 rounded p-4 my-2"
+      class="bg-white rounded-3xl w-1/2 shadow-2xl p-4 my-2"
     >
       <div
         class="bg-emerald-900 text-cyan-50 text-center p-1 rounded mb-2 text-ms"
       >
         {{ note.book.name }}
       </div>
-      <div class="text-xl">{{ note.title }}</div>
+      <div class="text-xl text-black">{{ note.title }}</div>
 
       <div
         [innerHTML]="note.note | line"
-        class="text-sm max-h-48 overflow-hidden"
+        class="text-sm max-h-48 text-black overflow-hidden"
       >
         {{ note.note }}
       </div>

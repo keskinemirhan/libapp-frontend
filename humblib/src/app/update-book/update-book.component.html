@@ -3,7 +3,7 @@
     <form
       *ngIf="this.libraryService.categoriesState.getValue()"
       [formGroup]="form"
-      class="p-5 shadow-lg flex max-w-md items-center justify-center flex-col"
+      class="bg-white rounded-3xl p-9 shadow-2xl flex max-w-md items-center border-2 border-emerald-900 justify-center flex-col"
       (submit)="onSubmit()"
     >
       <mat-form-field>
