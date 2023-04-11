@@ -49,21 +49,9 @@ export class LoginComponent {
       password: this.form.value.password,
     };
     this.loggerService.login(credentials);
+
     this.loggerService.logStatus.asObservable().subscribe((data: number) => {
-      if (!dialogShow) {
-        switch (data) {
-          case status.EMPTY:
-            break;
-          case status.DONE:
-            dialogShow = true;
-            this.router.navigateByUrl('/');
-            break;
-          case status.FAILED:
-            dialogShow = true;
-            this.openDialog();
-            break;
-        }
-      }
+      if (data === status.DONE) this.router.navigateByUrl('/');
     });
   }
 }
