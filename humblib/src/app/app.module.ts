@@ -34,6 +34,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NoteEditComponent } from './note-edit/note-edit.component';
 import { MatChipsModule } from '@angular/material/chips';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,12 @@ import { MatChipsModule } from '@angular/material/chips';
     MatTooltipModule,
     MatChipsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' },
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
