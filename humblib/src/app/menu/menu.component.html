@@ -3,32 +3,31 @@
     <div class="text-center text-4xl mt-4 text-emerald-900">
       Welcome to your library!
     </div>
-    <div class="flex flex-row text-center mx-2 flex-wrap">
+    <div class="flex flex-row text-center mx-2 gap-4 flex-wrap">
       <a
         (click)="clickList()"
         routerLink="/list"
-        class="flex-1 transition mx-6 my-6"
+        class="flex-1 flex basis-0 justify-center items-center box-border transition"
       >
-        <div class="card-list border-emerald-500 items-center border rounded">
-          <div
-            matRipple
-            class="subtext text-3xl px-24 my-24 bg-transparent text-cyan-50"
-          >
+        <div
+          class="card-list h-52 w-full flex border-emerald-500 flex-col justify-center items-stretch border rounded"
+        >
+          <div matRipple class="subtext text-3xl bg-transparent text-cyan-50">
             List
           </div>
         </div>
       </a>
+
       <a
         (click)="clickList()"
         routerLink="/categorization"
         href=""
-        class="flex-1 transition mx-6 my-6"
+        class="flex-1 flex basis-0 justify-center items-center box-border transition"
       >
-        <div class="card-cat border-emerald-500 items-center border rounded">
-          <div
-            matRipple
-            class="subtext text-3xl px-24 my-24 bg-transparent text-cyan-50"
-          >
+        <div
+          class="card-cat h-52 w-full flex border-emerald-500 flex-col justify-center items-stretch border rounded"
+        >
+          <div matRipple class="subtext text-3xl bg-transparent text-cyan-50">
             Categorization
           </div>
         </div>
@@ -37,25 +36,24 @@
         (click)="clickList()"
         routerLink="/library"
         href=""
-        class="flex-1 transition mx-6 my-6"
+        class="flex-1 flex basis-0 justify-center items-center box-border transition"
       >
         <div
-          class="card-library border-emerald-500 items-center border rounded"
+          class="card-library h-52 w-full flex border-emerald-500 flex-col justify-center items-stretch border rounded"
         >
-          <div
-            matRipple
-            class="subtext text-3xl px-24 my-24 bg-transparent text-cyan-50"
-          >
+          <div matRipple class="subtext text-3xl bg-transparent text-cyan-50">
             Library
           </div>
         </div>
       </a>
-      <a routerLink="notes" class="flex-1 transition mx-6 my-6">
-        <div class="card-note border-emerald-500 items-center border rounded">
-          <div
-            matRipple
-            class="subtext text-3xl px-24 my-24 bg-transparent text-cyan-50"
-          >
+      <a
+        routerLink="notes"
+        class="flex-1 flex basis-0 justify-center items-center box-border transition"
+      >
+        <div
+          class="card-note h-52 w-full flex border-emerald-500 flex-col justify-center items-stretch border rounded"
+        >
+          <div mat-ripple class="subtext text-3xl bg-transparent text-cyan-50">
             Notes
           </div>
         </div>

@@ -7,18 +7,26 @@ div[class^="card"] {
 
 .card-list {
   background-image: url("https://cdn.pixabay.com/photo/2021/01/21/15/54/books-5937716_960_720.jpg");
+  min-width: 280px;
+  max-width: 480px;
 }
 
 .card-cat {
   background-image: url("https://cdn.pixabay.com/photo/2016/01/19/01/42/library-1147815_960_720.jpg");
+  min-width: 280px;
+  max-width: 480px;
 }
 
 .card-library {
   background-image: url("https://cdn.pixabay.com/photo/2014/10/14/20/14/library-488690_960_720.jpg");
+  min-width: 280px;
+  max-width: 480px;
 }
 
 .card-note {
   background-image: url("https://cdn.pixabay.com/photo/2016/11/19/16/48/notebook-1840276_960_720.jpg");
+  min-width: 280px;
+  max-width: 480px;
 }
 .subtext {
   background-color: #064e3b;
