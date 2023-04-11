@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { NoteEditComponent } from './note-edit/note-edit.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import {
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatSnackBarModule,
+} from '@angular/material/snack-bar';
+import { HumblibExceptionHandler } from './core';
 
 @NgModule({
   declarations: [
@@ -77,12 +82,18 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
     MatCardModule,
     MatTooltipModule,
     MatChipsModule,
+    MatSnackBarModule,
   ],
   providers: [
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' },
     },
+    {
+      provide: ErrorHandler,
+      useClass: HumblibExceptionHandler,
+    },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
   ],
   bootstrap: [AppComponent],
 })
