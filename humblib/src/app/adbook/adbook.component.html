@@ -8,12 +8,15 @@
       <mat-form-field>
         <mat-label for="name">Book Name</mat-label>
         <input
+          maxlength="256"
+          #bookname
           matInput
           type="text"
           formControlName="name"
           name="name"
           id="name"
         />
+        <mat-hint>{{ bookname.value.length }}/256</mat-hint>
       </mat-form-field>
 
       <div

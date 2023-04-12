@@ -9,6 +9,8 @@
       <mat-form-field>
         <mat-label>Book Name</mat-label>
         <input
+          maxlength="256"
+          #bookname
           matInput
           type="text"
           required
@@ -17,6 +19,7 @@
           name="name"
           id="name"
         />
+        <mat-hint>{{ bookname.value.length }}/256</mat-hint>
       </mat-form-field>
       <div
         *ngIf="this.libraryService.categoriesState.getValue().length"

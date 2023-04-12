@@ -23,7 +23,14 @@
         <div class="text-xl text-emerald-900 m-2">New Category</div>
         <mat-form-field>
           <mat-label>Category Name</mat-label>
-          <input matInput formControlName="name" type="text" name="" id="" />
+          <input
+            maxlength="128"
+            #catname
+            matInput
+            formControlName="name"
+            type="text"
+          />
+          <mat-hint>{{ catname.value.length }}/128</mat-hint>
         </mat-form-field>
         <button
           matRipple

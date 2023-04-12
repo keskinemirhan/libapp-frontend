@@ -5,7 +5,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LibraryService } from '../core';
 import { CreateCategory } from '../core/models';
 
@@ -16,13 +15,12 @@ import { CreateCategory } from '../core/models';
 })
 export class CategorizationComponent implements OnInit {
   form: FormGroup;
-  constructor(
-    private router: Router,
-    private fb: FormBuilder,
-    public libraryService: LibraryService
-  ) {
+  constructor(private fb: FormBuilder, public libraryService: LibraryService) {
     this.form = this.fb.group({
-      name: new FormControl('', Validators.required),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(128),
+      ]),
       top: [0],
     });
   }

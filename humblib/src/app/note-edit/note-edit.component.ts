@@ -23,8 +23,11 @@ export class NoteEditComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      title: new FormControl('', Validators.required),
-      note: new FormControl('', Validators.required),
+      title: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(256),
+      ]),
+      note: new FormControl('', Validators.maxLength(1500)),
       id: new FormControl(0),
     });
   }

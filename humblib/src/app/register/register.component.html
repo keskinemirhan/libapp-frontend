@@ -1,7 +1,7 @@
 <div class="register container mx-auto">
   <div class="flex mb-48 flex-col items-center justify-center">
     <form
-      class="flex shadow-2xl border-2 border-emerald-900 bg-white rounded-3xl p-9 flex-col items-center"
+      class="flex gap-3 shadow-2xl border-2 border-emerald-900 bg-white rounded-3xl p-9 flex-col items-center"
       (submit)="onSubmit()"
       [formGroup]="form"
     >
@@ -14,6 +14,9 @@
           name="email"
           id="email"
         />
+        <mat-error *ngIf="this.form.get('email')?.errors">
+          {{ handleErrors("email") }}
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Username</mat-label>
@@ -25,6 +28,9 @@
           name="username"
           id="username"
         />
+        <mat-error *ngIf="this.form.get('username')?.errors">
+          {{ handleErrors("username") }}
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
@@ -35,6 +41,9 @@
           name="password "
           id="password"
         />
+        <mat-error *ngIf="this.form.get('password')?.errors">
+          {{ handleErrors("password") }}
+        </mat-error>
       </mat-form-field>
 
       <button

@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { LibraryService } from '../core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReceivedBookModel, UpdateBook } from '../core/models';
@@ -21,7 +27,10 @@ export class UpdateBookComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      name: [''],
+      name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(256),
+      ]),
       categories: this.fb.array([]),
     });
   }

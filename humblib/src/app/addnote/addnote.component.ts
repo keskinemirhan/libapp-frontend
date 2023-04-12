@@ -23,8 +23,14 @@ export class AddnoteComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.form = fb.group({
-      title: new FormControl('', Validators.required),
-      note: new FormControl('', Validators.required),
+      title: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(256),
+      ]),
+      note: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(1500),
+      ]),
     });
   }
   bookId: number = 0;

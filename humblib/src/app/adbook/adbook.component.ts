@@ -23,7 +23,10 @@ export class AdbookComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.form = this.fb.group({
-      name: new FormControl('', Validators.required),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(256),
+      ]),
       categories: this.fb.array([]),
     });
   }

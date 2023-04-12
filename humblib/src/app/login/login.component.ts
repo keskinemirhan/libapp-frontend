@@ -22,15 +22,18 @@ export class LoginComponent {
     private router: Router
   ) {
     this.form = this.fb.group({
-      username: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(256),
+      ]),
     });
   }
 
   onSubmit() {
     if (!this.form.valid) return;
     const credentials: Login = {
-      email: this.form.value.username,
+      email: this.form.value.email,
       password: this.form.value.password,
     };
     this.loggerService.login(credentials);
