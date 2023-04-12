@@ -1,6 +1,8 @@
 <div class="container mx-auto">
   <div class="flex justify-center">
-    <div class="max-w-2xl">
+    <div
+      class="max-w-2xl mt-2 bg-white border-emerald-900 border-2 p-2 rounded-3xl"
+    >
       <mat-chip-listbox multiple="">
         <mat-chip-option
           [selected]="!filtered"
@@ -19,14 +21,16 @@
       </mat-chip-listbox>
     </div>
   </div>
-  <div class="flex-wrap justify-center text-center m-5 flex">
+  <div
+    class="flex-wrap justify-center bg-white rounded-3xl border-emerald-900 border-2 text-center m-5 flex"
+  >
     <div *ngFor="let book of this.filteredBooks.getValue()">
       <a class="transition">
         <div
-          class="book w-48 m-2 transition p-2 h-64 bg-slate-200 shadow-2xl rounded-sm flex justify-center items-center"
+          class="book w-48 m-2 transition p-2 h-64 shadow-xl border border-slate-600 bg-emerald-700 rounded-md flex justify-center items-center"
         >
           <div
-            class="flex flex-col items-center gap-24 justify-center w-full h-full border border-slate-900"
+            class="flex flex-col items-center gap-24 justify-center w-full h-full bg-slate-200 border border-slate-900"
           >
             <p class="inline-block text-base">{{ book.name }}</p>
             <button
