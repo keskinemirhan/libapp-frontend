@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, lastValueFrom } from 'rxjs';
 import { LOG_URL, PROF_URL, USER_URL } from './var';
 import { TokenService } from './token.service';
 import { ApiService } from './api.service';
@@ -25,20 +25,32 @@ export class LoggerService {
     private apiService: ApiService
   ) {}
 
-  initLogin() {
+  async initLogin() {
     const token = this.tokenService.getToken();
     if (token) {
-      this.apiService.get$(PROF_URL).subscribe({
-        next: (data: any) => {
-          this.isLogged.next(true);
-          this.setLogInfo(data.username);
-        },
-        error: (err) => {
-          this.deleteLogInfo();
-          this.isLogged.next(false);
-          throw err;
-        },
-      });
+      try {
+        const response: any = await lastValueFrom(
+          this.apiService.get$(PROF_URL)
+        );
+        this.isLogged.next(true);
+        this.setLogInfo(response.username);
+      } catch (err) {
+        this.deleteLogInfo();
+        this.isLogged.next(false);
+        throw err;
+      }
+
+      // subscribe({
+      //   next: (data: any) => {
+      //     this.isLogged.next(true);
+      //     this.setLogInfo(data.username);
+      //   },
+      //   error: (err) => {
+      //     this.deleteLogInfo();
+      //     this.isLogged.next(false);
+      //     throw err;
+      //   },
+      // });
     }
   }
 

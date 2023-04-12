@@ -1,4 +1,4 @@
-import { ErrorHandler, NgModule } from '@angular/core';
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -38,7 +38,7 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatSnackBarModule,
 } from '@angular/material/snack-bar';
-import { HumblibExceptionHandler } from './core';
+import { HumblibExceptionHandler, LoggerService } from './core';
 import { LoginGuardService } from './core/guards';
 
 @NgModule({
@@ -94,6 +94,13 @@ import { LoginGuardService } from './core/guards';
       useClass: HumblibExceptionHandler,
     },
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (service: LoggerService) => async () =>
+        await service.initLogin(),
+      deps: [LoggerService],
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

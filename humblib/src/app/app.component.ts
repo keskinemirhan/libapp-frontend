@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { LoggerService } from './core';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +6,5 @@ import { LoggerService } from './core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private loggerService: LoggerService) {
-    this.loggerService.initLogin();
-  }
   title = 'humblib';
 }
