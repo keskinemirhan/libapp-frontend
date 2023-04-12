@@ -5,7 +5,7 @@ import {
   ReceivedCategoryModel,
   ReceivedNoteModel,
 } from '../core/models';
-import { BehaviorSubject, filter } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { MatChipSelectionChange } from '@angular/material/chips';
 
 @Component({

@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, last } from 'rxjs';
-import { LoggerService } from './logger.service';
 import { BOOK_URL, CAT_FLAT_URL, CAT_URL, NOTES_URL } from './var';
 import { ApiService } from './api.service';
 import {
@@ -17,11 +15,7 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class LibraryService {
-  constructor(
-    private apiService: ApiService,
-    private http: HttpClient,
-    private loggerService: LoggerService
-  ) {}
+  constructor(private apiService: ApiService) {}
   booksState = new BehaviorSubject<Array<ReceivedBookModel>>([]);
   categoriesNestedState = new BehaviorSubject<ReceivedCategoryModel>({});
   categoriesState = new BehaviorSubject<Array<ReceivedCategoryModel>>([]);
