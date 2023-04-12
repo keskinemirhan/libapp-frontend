@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoggerService } from '../core/services/logger.service';
 import { Router } from '@angular/router';
+import { LibraryService } from '../core';
 
 @Component({
   selector: 'app-profile',
@@ -8,12 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(public loggerService: LoggerService, private router: Router) {}
+  constructor(
+    public loggerService: LoggerService,
+    private router: Router,
+    private libraryService: LibraryService
+  ) {}
   profile = '';
   isLogged = false;
 
   logout() {
     this.loggerService.deleteLogInfo();
+    this.libraryService.flushStates();
     this.router.navigateByUrl('/login');
   }
 

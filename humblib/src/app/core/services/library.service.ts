@@ -28,6 +28,13 @@ export class LibraryService {
   notesState = new BehaviorSubject<Array<ReceivedNoteModel>>([]);
   loading = new BehaviorSubject<boolean>(true);
 
+  flushStates() {
+    this.booksState.next([]);
+    this.categoriesNestedState.next({});
+    this.categoriesState.next([]);
+    this.notesState.next([]);
+  }
+
   //=================== BOOKS ==================
 
   getBooks$() {
