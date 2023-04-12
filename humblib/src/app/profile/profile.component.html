@@ -1,9 +1,15 @@
-<a routerLink="/login" class="flex flex-col items-center my-2">
-  <img
-    src="https://cdn.iconscout.com/icon/free/png-512/profile-289-460696.png?f=avif&w=256"
-    class="w-8"
-  />
-  <div class="text-xs text-cyan-50">
-    {{ this.profile }}
+<div class="flex">
+  <a routerLink="/login" class="flex mr-3 flex-col items-center my-2">
+    <mat-icon class="text-cyan-50" *ngIf="this.isLogged">person</mat-icon>
+    <mat-icon class="text-cyan-50" *ngIf="!this.isLogged">login</mat-icon>
+    <div class="text-xs text-cyan-50">
+      {{ this.profile }}
+    </div>
+  </a>
+  <div *ngIf="this.isLogged">
+    <button (click)="logout()" class="flex flex-col items-center my-2">
+      <mat-icon class="text-cyan-50">logout</mat-icon>
+      <div class="text-xs text-cyan-50">Logout</div>
+    </button>
   </div>
-</a>
+</div>
