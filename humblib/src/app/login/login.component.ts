@@ -8,14 +8,6 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import {
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-  MatDialog,
-} from '@angular/material/dialog';
-import { Inject } from '@angular/core';
-
-let dialogShow = false;
 
 @Component({
   selector: 'app-login',
@@ -27,18 +19,11 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     public loggerService: LoggerService,
-    private router: Router,
-    private dialog: MatDialog
+    private router: Router
   ) {
     this.form = this.fb.group({
       username: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
-    });
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      data: this.loggerService.serverResponse.getValue(),
     });
   }
 
@@ -53,27 +38,5 @@ export class LoginComponent {
     this.loggerService.logStatus.asObservable().subscribe((data: number) => {
       if (data === status.DONE) this.router.navigateByUrl('/');
     });
-  }
-}
-
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  //temporary error catch
-  template: `<p>{{ data.error.detail }}</p>
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">No Thanks</button>
-    </div>`,
-})
-export class DialogOverviewExampleDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {
-    // this.data = JSON.stringify(data);
-  }
-
-  onNoClick(): void {
-    dialogShow = false;
-    this.dialogRef.close();
   }
 }

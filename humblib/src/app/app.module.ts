@@ -25,7 +25,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
@@ -75,7 +74,6 @@ import { HumblibExceptionHandler } from './core';
     MatBadgeModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
     MatRippleModule,
