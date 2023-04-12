@@ -1,12 +1,12 @@
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-interface HumblibException {
-  statusCode: string;
-  info?: string;
-  detail: string;
-  path: string;
-}
+// interface HumblibException {
+//   statusCode: string;
+//   info?: string;
+//   detail: string;
+//   path: string;
+// }
 
 @Injectable()
 export class HumblibExceptionHandler implements ErrorHandler {
@@ -24,6 +24,9 @@ export class HumblibExceptionHandler implements ErrorHandler {
     '1201': 'User not found',
   };
   handleError(error: any) {
+    if (!error.error) {
+      throw error;
+    }
     const message =
       this.exceptionMap[
         error.error.statusCode as keyof typeof this.exceptionMap
