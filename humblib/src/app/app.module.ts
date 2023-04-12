@@ -39,6 +39,7 @@ import {
   MatSnackBarModule,
 } from '@angular/material/snack-bar';
 import { HumblibExceptionHandler } from './core';
+import { LoginGuardService } from './core/guards';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { HumblibExceptionHandler } from './core';
     MatSnackBarModule,
   ],
   providers: [
+    LoginGuardService,
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' },
