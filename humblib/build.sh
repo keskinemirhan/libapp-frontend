@@ -9,4 +9,4 @@ cp ./nginx.conf /etc/nginx/conf.d/default.conf
 
 cp ./dist/humblib/ /usr/share/nginx/html
 
-nginx -s reload
+nginx 
