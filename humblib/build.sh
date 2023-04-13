@@ -1,7 +1,5 @@
 #/!bin/sh
 
-npm install
-npm run build
 
 apt update -y && apt upgrade -y
 
