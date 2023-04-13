@@ -3,9 +3,9 @@
 npm install
 npm run build
 
-apt update && apt upgrade
+apt update -y && apt upgrade -y
 
-apt install nginx
+apt install nginx -y
 
 cp ./nginx.conf /etc/nginx/conf.d/default.conf
 
