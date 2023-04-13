@@ -3,10 +3,12 @@
 npm install
 npm run build
 
+apt update && apt upgrade
+
 apt install nginx
 
 cp ./nginx.conf /etc/nginx/conf.d/default.conf
 
-cp /app/dist/humblib/ /usr/share/nginx/html
+cp ./dist/humblib/ /usr/share/nginx/html
 
 nginx -s reload
