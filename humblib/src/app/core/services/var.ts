@@ -1,5 +1,5 @@
-//@ts-ignore
-export const BASE_URL: string = process.env.API_URL || 'http://localhost:3000';
+export const BASE_URL: string =
+  process.env['API_URL'] || 'http://localhost:3000';
 export const BOOK_URL: string = BASE_URL + '/library/book';
 export const CAT_URL: string = BASE_URL + '/library/category';
 export const LIB_URL: string = BASE_URL + '/library';
