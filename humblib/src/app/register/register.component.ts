@@ -16,11 +16,16 @@ import { Register } from '../core/models';
 })
 export class RegisterComponent {
   form: FormGroup;
+  loading = false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private loggerService: LoggerService
   ) {
+    this.loggerService.loading.asObservable().subscribe((data: boolean) => {
+      this.loading = data;
+    });
+
     this.form = this.fb.group({
       username: new FormControl('', [
         Validators.required,
@@ -62,6 +67,5 @@ export class RegisterComponent {
       email: this.form.value.email,
     };
     this.loggerService.register(register);
-    this.router.navigateByUrl('/');
   }
 }
