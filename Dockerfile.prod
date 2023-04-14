@@ -1,9 +1,8 @@
-FROM node:19-alpine3.16
+FROM node:19-alpine3.16 
 WORKDIR /app
 
 COPY ./humblib .
-RUN npm install
-RUN npm run build
-FROM nginx:latest
+RUN npm install && npm run build
+FROM nginx:latest 
 COPY ./humblib/nginx.conf /etc/nginx
 EXPOSE 8080
