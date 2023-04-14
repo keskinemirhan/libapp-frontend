@@ -20,7 +20,7 @@ export class LibraryService {
   categoriesNestedState = new BehaviorSubject<ReceivedCategoryModel>({});
   categoriesState = new BehaviorSubject<Array<ReceivedCategoryModel>>([]);
   notesState = new BehaviorSubject<Array<ReceivedNoteModel>>([]);
-  loading = new BehaviorSubject<boolean>(true);
+  loading = new BehaviorSubject<boolean>(false);
 
   flushStates() {
     this.booksState.next([]);
@@ -32,24 +32,28 @@ export class LibraryService {
   //=================== BOOKS ==================
 
   getBooks$() {
+    this.loading.next(true);
     this.apiService.get$(BOOK_URL).subscribe({
       next: (data: any) => {
-        this.loading.next(true);
         this.booksState.next(data);
+        this.loading.next(false);
       },
       complete: () => this.loading.next(false),
     });
   }
 
   getBook$(id: number) {
+    this.loading.next(true);
     return this.apiService.get$(BOOK_URL + `/${id}`).pipe(last());
   }
 
   patchBook$(body: UpdateBook) {
+    this.loading.next(true);
     this.apiService.patch$(BOOK_URL, body).subscribe(() => this.getBooks$());
   }
 
   deleteBook$(id: number) {
+    this.loading.next(true);
     this.apiService
       .delete$(BOOK_URL + `/${id}`)
       .subscribe(() => this.getBooks$());
@@ -57,6 +61,8 @@ export class LibraryService {
 
   //temporary implementation
   createBook$(body: CreateBook) {
+    this.loading.next(true);
+
     this.apiService
       .post$(BOOK_URL, body)
 
@@ -100,9 +106,12 @@ export class LibraryService {
   //=================== CATEGORIES ==================
 
   getCategoriesNested$() {
-    this.apiService
-      .get$(CAT_URL)
-      .subscribe((data: any) => this.categoriesNestedState.next(data));
+    this.loading.next(true);
+
+    this.apiService.get$(CAT_URL).subscribe((data: any) => {
+      this.categoriesNestedState.next(data);
+      this.loading.next(false);
+    });
   }
 
   // getCategoriesNested() {
@@ -117,9 +126,12 @@ export class LibraryService {
   // }
 
   getCategoriesArray$() {
-    this.apiService
-      .get$(CAT_FLAT_URL)
-      .subscribe((data: any) => this.categoriesState.next(data));
+    this.loading.next(true);
+
+    this.apiService.get$(CAT_FLAT_URL).subscribe((data: any) => {
+      this.categoriesState.next(data);
+      this.loading.next(false);
+    });
   }
 
   // getCategoriesArray() {
@@ -149,6 +161,7 @@ export class LibraryService {
   // }
 
   deleteCategory$(id: number) {
+    this.loading.next(true);
     this.apiService.delete$(CAT_URL + `/${id}`).subscribe((data: any) => {
       this.getCategoriesArray$();
       this.getCategoriesNested$();
@@ -165,6 +178,7 @@ export class LibraryService {
   // }
 
   createCategory$(body: CreateCategory) {
+    this.loading.next(true);
     this.apiService.post$(CAT_URL, body).subscribe((data: any) => {
       this.getCategoriesNested$();
       this.getCategoriesArray$();
@@ -194,9 +208,11 @@ export class LibraryService {
   //======================= NOTES ========================
 
   getAllNotes$() {
-    this.apiService
-      .get$(NOTES_URL)
-      .subscribe((data: any) => this.notesState.next(data));
+    this.loading.next(true);
+    this.apiService.get$(NOTES_URL).subscribe((data: any) => {
+      this.notesState.next(data);
+      this.loading.next(false);
+    });
   }
 
   // getAllNotes() {
@@ -209,24 +225,29 @@ export class LibraryService {
   // }
 
   getNotesByBook$(id: number) {
+    this.loading.next(true);
     return this.apiService.get$(NOTES_URL + '/book' + `/${id}`).pipe(last());
   }
 
   getNote$(id: number) {
+    this.loading.next(true);
     return this.apiService.get$(NOTES_URL + `/${id}`).pipe(last());
   }
 
   createNote$(body: CreateNote) {
+    this.loading.next(true);
     this.apiService.post$(NOTES_URL, body).subscribe(() => this.getAllNotes$());
   }
 
   updateNote(body: UpdateNote) {
+    this.loading.next(true);
     this.apiService
       .patch$(NOTES_URL, body)
       .subscribe(() => this.getAllNotes$());
   }
 
   deleteNote(id: number) {
+    this.loading.next(true);
     this.apiService
       .delete$(NOTES_URL + `/${id}`)
       .subscribe(() => this.getAllNotes$());

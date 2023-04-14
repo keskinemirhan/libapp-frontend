@@ -11,12 +11,16 @@ export class BooknotesComponent implements OnInit {
   constructor(
     private libraryService: LibraryService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.libraryService.loading.asObservable().subscribe((data: boolean) => {
+      this.loading = data;
+    });
+  }
 
   notes: any[] = [];
   bookId: number = 0;
   book: any = {};
-
+  loading = true;
   deleteNote(id: number) {
     this.libraryService.deleteNote(id);
   }
@@ -30,8 +34,13 @@ export class BooknotesComponent implements OnInit {
         (data: any) =>
           (this.notes = data.filter((data: any) => data.book.id == this.bookId))
       );
+    this.libraryService.loading.next(true);
     this.book = this.libraryService
       .getBook$(this.bookId)
-      .subscribe((data: any) => (this.book = data));
+      .subscribe((data: any) => {
+        this.libraryService.loading.next(true);
+        this.book = data;
+        this.libraryService.loading.next(false);
+      });
   }
 }

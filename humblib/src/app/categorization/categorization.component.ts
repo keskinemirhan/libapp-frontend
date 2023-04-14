@@ -15,7 +15,11 @@ import { CreateCategory } from '../core/models';
 })
 export class CategorizationComponent implements OnInit {
   form: FormGroup;
+  loading: boolean = true;
   constructor(private fb: FormBuilder, public libraryService: LibraryService) {
+    this.libraryService.loading.asObservable().subscribe((data: boolean) => {
+      this.loading = data;
+    });
     this.form = this.fb.group({
       name: new FormControl('', [
         Validators.required,

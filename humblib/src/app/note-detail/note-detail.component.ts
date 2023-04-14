@@ -10,11 +10,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NoteDetailComponent implements OnInit {
   note: any = {};
   noteId: number = 0;
+  loading = true;
   constructor(
     private libraryService: LibraryService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.libraryService.loading.asObservable().subscribe((data: boolean) => {
+      this.loading = data;
+    });
+  }
 
   deleteNote(id: number) {
     this.libraryService.deleteNote(id);

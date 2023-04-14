@@ -1,8 +1,15 @@
 <div class="container mx-auto">
-  <div class="flex justify-center text-emerald-900 items-center flex-col">
+  <div *ngIf="loading">
+    <mat-spinner class="mx-auto"></mat-spinner>
+  </div>
+  <div
+    *ngIf="!loading"
+    class="flex justify-center text-emerald-900 items-center flex-col"
+  >
     <div class="text-xl my-2 bg-emerald-900 text-cyan-50 p-2 rounded">
       Total Notes : {{ notes.length }}
     </div>
+
     <div
       *ngFor="let note of notes"
       class="bg-white rounded-3xl w-1/2 shadow-2xl p-4 my-2"

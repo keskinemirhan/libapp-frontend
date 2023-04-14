@@ -40,6 +40,7 @@ import {
 } from '@angular/material/snack-bar';
 import { HumblibExceptionHandler, LoggerService } from './core';
 import { LoginGuardService } from './core/guards';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { LoginGuardService } from './core/guards';
   ],
 
   imports: [
+    MatProgressSpinnerModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserModule,

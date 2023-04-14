@@ -9,7 +9,11 @@ import { LibraryService } from '../core';
 export class NotesComponent implements OnInit {
   constructor(public libraryService: LibraryService) {}
   notes: any[] = [];
+  loading: boolean = true;
   ngOnInit() {
+    this.libraryService.loading.asObservable().subscribe((data: boolean) => {
+      this.loading = data;
+    });
     this.libraryService.getAllNotes$();
     this.libraryService.notesState
       .asObservable()

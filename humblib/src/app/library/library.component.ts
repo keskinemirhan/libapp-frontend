@@ -14,8 +14,12 @@ import { MatChipSelectionChange } from '@angular/material/chips';
   styleUrls: ['./library.component.css'],
 })
 export class LibraryComponent implements OnInit {
-  constructor(public libraryService: LibraryService) {}
-
+  constructor(public libraryService: LibraryService) {
+    this.libraryService.loading.asObservable().subscribe((data: boolean) => {
+      this.loading = data;
+    });
+  }
+  loading = true;
   categories: any = [];
   books: ReceivedBookModel[] = [];
   notes: ReceivedNoteModel[] = [];

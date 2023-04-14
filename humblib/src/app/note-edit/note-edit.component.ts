@@ -16,12 +16,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class NoteEditComponent implements OnInit {
   form: FormGroup;
   noteId: number = 0;
+  loading = true;
   constructor(
     private fb: FormBuilder,
     private libraryService: LibraryService,
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.libraryService.loading.asObservable().subscribe((data: boolean) => {
+      this.loading = data;
+    });
+
     this.form = this.fb.group({
       title: new FormControl('', [
         Validators.required,
@@ -40,6 +45,8 @@ export class NoteEditComponent implements OnInit {
       this.form.get('note').setValue(data.note);
       //@ts-ignore
       this.form.get('id').setValue(Number(data.id));
+
+      this.libraryService.loading.next(false);
     });
   }
 

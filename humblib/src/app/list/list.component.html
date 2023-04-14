@@ -1,5 +1,7 @@
 <div class="container mx-auto">
+  <div *ngIf="loading"><mat-spinner class="mx-auto"></mat-spinner></div>
   <div
+    *ngIf="!loading"
     class="flex mx-auto flex-col max-w-2xl items-stretch bg-white rounded border-2 border-emerald-900 mt-2 justify-center"
   >
     <div
