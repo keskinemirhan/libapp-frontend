@@ -4,6 +4,7 @@ import { LOG_URL, PROF_URL, USER_URL } from './var';
 import { TokenService } from './token.service';
 import { ApiService } from './api.service';
 import { Login, Register } from '../models';
+import { Router } from '@angular/router';
 
 export enum status {
   EMPTY = 0,
@@ -23,7 +24,8 @@ export class LoggerService {
   logStatus = new BehaviorSubject<number>(status.EMPTY);
   constructor(
     private tokenService: TokenService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) {}
 
   async initLogin() {
@@ -60,23 +62,18 @@ export class LoggerService {
   }
 
   deleteLogInfo() {
-    this.loading.next(true);
     this.tokenService.deleteToken();
     this.profileName.next('');
     this.isLogged.next(false);
-    this.loading.next(false);
   }
 
   setLogInfo(username: string) {
-    this.loading.next(true);
     this.isLogged.next(true);
     this.profileName.next(username);
-    this.loading.next(false);
   }
 
   login(credentials: Login) {
     this.loading.next(true);
-    this.logStatus.next(status.WAITING);
     this.deleteLogInfo();
     this.apiService.post$(LOG_URL, credentials).subscribe({
       next: (data: any) => {
@@ -84,19 +81,15 @@ export class LoggerService {
         this.apiService.get$(PROF_URL).subscribe({
           next: (data: any) => {
             this.setLogInfo(data.username);
-            this.logStatus.next(status.DONE);
-            this.loading.next(false);
+            this.router.navigateByUrl('/');
           },
         });
       },
       error: (err) => {
-        this.serverResponse.next(err);
-        this.logStatus.next(status.FAILED);
         this.loading.next(false);
         throw err;
       },
       complete: () => {
-        this.logStatus.next(status.WAITING);
         this.loading.next(false);
       },
     });
@@ -110,7 +103,6 @@ export class LoggerService {
           email: credentials.email,
           password: credentials.password,
         });
-        this.loading.next(false);
       },
       error: (err) => {
         this.serverResponse.next(err);

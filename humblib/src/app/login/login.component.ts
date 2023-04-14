@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { LoggerService, status } from '../core/services/logger.service';
-import { Router } from '@angular/router';
+import { LoggerService } from '../core/services/logger.service';
 import { Login } from '../core/models';
 import {
   FormBuilder,
@@ -16,11 +15,12 @@ import {
 })
 export class LoginComponent {
   form: FormGroup;
-  constructor(
-    private fb: FormBuilder,
-    public loggerService: LoggerService,
-    private router: Router
-  ) {
+  loading = true;
+  constructor(private fb: FormBuilder, public loggerService: LoggerService) {
+    this.loggerService.loading.asObservable().subscribe((data: boolean) => {
+      this.loading = data;
+    });
+
     this.form = this.fb.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -37,9 +37,5 @@ export class LoginComponent {
       password: this.form.value.password,
     };
     this.loggerService.login(credentials);
-
-    this.loggerService.logStatus.asObservable().subscribe((data: number) => {
-      if (data === status.DONE) this.router.navigateByUrl('/');
-    });
   }
 }
